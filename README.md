@@ -30,37 +30,42 @@
 -Posee funcionalidades de login, manejo de errores y spring security en los templates y controllers. 
 </p>
 
-<h3 align="left">Perros V2.1 Login, ErrorController, Spring Security, Lombok, Modelos, Converter, Relaciones y JOINS con JPQL</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV2.1" target="_blank">Perros V2.1 Login, ErrorController, Spring Security, Lombok, Modelos, Converter, Relaciones y JOINS con JPQL</a></h3>
 <p align="left"> 
 -Es un ejemplo Intermedio donde se pueden cargar perros y darlos de alta o baja.
 </p>
 
-<h3 align="left">Perros V2.2 Login, ErrorController, Spring Security, Lombok, Modelos, Converter, Relaciones, JOINS con JPQL, Paginador y dashboard</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV2.2" target="_blank">Perros V2.2 Login, ErrorController, Spring Security, Lombok, Modelos, Converter, Relaciones, JOINS con JPQL, Paginador y dashboard</a></h3>
 <p align="left"> 
 -Es un ejemplo Intermedio donde se pueden cargar perros y darlos de alta o baja aplicados a un dashboard.
 </p>
 
-<h3 align="left">Perros V3 cargar Imagenes a la base de datos y mostrarlas</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV3" target="_blank">Perros V3 cargar Imagenes a la base de datos y mostrarlas</a></h3>
 <p align="left"> 
 -Ejemplo de como cargar img a la base de datos.
 </p>
 
-<h3 align="left">Perros V3.1 cargar Imagenes como archivos y mostrarlas</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV3.1" target="_blank">Perros V3.1 cargar Imagenes como archivos y mostrarlas</a></h3>
 <p align="left"> 
 -Ejemplo de como cargar img como archivos.
 </p>
 
-<h3 align="left">Perros V4 patron Generic en REST Controllers, Services y Converters</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV4" target="_blank">Perros V4 patron Generic en REST Controllers, Services y Converters</a></h3>
 <p align="left"> 
 -Ejemplo avanzado de como aplicar patron generic en REST Controllers, Services y Converters.
 </p>
 
-<h3 align="left">Perros V4.1 como aplicar JWT</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV4.1" target="_blank">Perros V4.1 como aplicar JWT</a></h3>
 <p align="left"> 
 -Ejemplo avanzado de como aplicar JWT en backend.
 </p>
 
-<h3 align="left">Perros V4.2 como RabbitMQ</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV4.2" target="_blank">Perros V4.2 como RabbitMQ</a></h3>
 <p align="left"> 
 -Ejemplo avanzado de como RabbitMQ en Spring.
+</p>
+
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV4.3" target="_blank">Perros V4.3 Login con redes Sociales</a></h3>
+<p align="left"> 
+-Ejemplo avanzado de como loguearse con redes sociales.
 </p>

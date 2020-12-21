@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="ISO-8859-1">
+<title>Listado de Perros</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+
+</head>
+<body>
+
+	<div class="container m-5">
+		<table class="table table-dark">
+			<thead>
+				<tr>
+					<th scope="col">id</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Apodo</th>
+					<th scope="col">Foto</th>
+					<th scope="col">Esta activo?</th>
+					<th scope="col">Acciones</th>
+				</tr>
+			</thead>
+			<tbody th:each="perro : ${perros}">
+				<tr>
+					<th scope="row" th:text="${perro.id}"></th>
+					<td th:text="${perro.nombre}"></td>
+					<td th:text="${perro.apodo}"></td>
+					<td><img class="bd-placeholder-img card-img-top" th:src="${perro.foto}" style="width: auto; height: 60px;"></td>
+					<td>
+						<i th:if="${perro.activo}" class="fa fa-circle text-success"></i>
+						<i th:unless="${perro.activo}" class="fa fa-circle" style="color:red;"></i>
+					</td>
+					<td>
+					<a th:href="@{/perro/alta/__${perro.id}__}"><i class="fa fa-arrow-up"></i></a> 
+					<a th:href="@{/perro/baja/__${perro.id}__}"><i class="fa fa-ban"></i></a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+
+		<section class="py-5 text-center container">
+			<div class="row py-lg-5">
+				<div class="col-lg-6 col-md-8 mx-auto">
+					<a th:href="@{/}" class="btn btn-primary my-2">Volver</a>
+					</p>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

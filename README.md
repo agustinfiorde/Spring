@@ -1,30 +1,30 @@
 <h1 align="center">Java, Spring y Thymeleaf </h1>
 <p align="left"> A continuacion veran distintos ejemplos aplicables a proyectos Spring</p>
 
-<h3 align="left">Perros V1 MySQL</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV1" target="_blank">Perros V1 MySQL</a></h3>
 <p align="left"> 
 -Es un ejemplo basico donde se pueden cargar perros y darlos de alta o baja.
 -Base de datos utilizada MySQL
 </p>
 
-<h3 align="left">Perros V1.1 Mongo</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV1.1" target="_blank">Perros V1.1 Mongo</a></h3>
 <p align="left"> 
 -Es un ejemplo basico donde se pueden cargar perros y darlos de alta o baja.
 -Base de datos utilizada Mongo
 </p>
 
-<h3 align="left">Perros V1.2 Mail Sender</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV1.2" target="_blank">Perros V1.2 Mail Sender</a></h3>
 <p align="left"> 
 -Es un ejemplo basico donde se pueden cargar perros y darlos de alta o baja y enviar por email el perro cargado.
 </p>
 
-<h3 align="left">Perros V1.3 Scheduled</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV1.3" target="_blank">Perros V1.3 Scheduled</a></h3>
 <p align="left"> 
 -Es un ejemplo basico donde se pueden cargar perros y darlos de alta o baja.
 -Cada determinado tiempo todos los perros se daran de baja de forma automatica.
 </p>
 
-<h3 align="left">Perros V2 Login, ErrorController, Spring Security y Lombok</h3>
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV2" target="_blank">Perros V2 Login, ErrorController, Spring Security y Lombok</a></h3>
 <p align="left"> 
 -Es un ejemplo Intermedio donde se pueden cargar perros y darlos de alta o baja.
 -Posee funcionalidades de login, manejo de errores y spring security en los templates y controllers. 

@@ -51,7 +51,7 @@ public class PerroController {
 	}
 	
 	@GetMapping("/baja/{id}")
-	public String baja(ModelMap modelo, @PathVariable String id) {
+	public String baja(@PathVariable String id) {
 				
 		try {
 			perroService.baja(id);
@@ -62,7 +62,7 @@ public class PerroController {
 	}
 	
 	@GetMapping("/alta/{id}")
-	public String alta(ModelMap modelo, @PathVariable String id) {
+	public String alta(@PathVariable String id) {
 		
 		try {
 			perroService.alta(id);

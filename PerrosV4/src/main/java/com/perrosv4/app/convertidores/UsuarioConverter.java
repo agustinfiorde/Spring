@@ -9,27 +9,22 @@ import org.springframework.stereotype.Component;
 
 import com.perrosv4.app.entidades.Perro;
 import com.perrosv4.app.entidades.Usuario;
+import com.perrosv4.app.excepciones.ConversionError;
 import com.perrosv4.app.modelos.PerroModel;
 import com.perrosv4.app.modelos.UsuarioModel;
 import com.perrosv4.app.repositorios.PerroRepository;
 import com.perrosv4.app.repositorios.UsuarioRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Component("UsuarioConverter")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 
-	private UsuarioRepository usuarioRepository;
-	private PerroRepository perroRepository;
-	private PerroConverter perroConverter;
-	private FotoConverter fotoConverter;
-
-	@Autowired
-	public UsuarioConverter(UsuarioRepository usuarioRepository, PerroConverter perroConverter,
-			FotoConverter fotoConverter, PerroRepository perroRepository) {
-		this.usuarioRepository = usuarioRepository;
-		this.perroConverter = perroConverter;
-		this.fotoConverter = fotoConverter;
-		this.perroRepository = perroRepository;
-	}
+	private final UsuarioRepository usuarioRepository;
+	private final PerroRepository perroRepository;
+	private final PerroConverter perroConverter;
+	private final FotoConverter fotoConverter;
 
 	public UsuarioModel entityToModel(Usuario entity) {
 		UsuarioModel model = new UsuarioModel();
@@ -58,7 +53,7 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 			BeanUtils.copyProperties(entity, model);
 
 		} catch (Exception e) {
-			log.error("Error al convertir la entidad en el modelo del Usuario", e);
+			throw new ConversionError("Error al convertir la entidad "+entity.toString()+" a modelo"  );
 		}
 
 		return model;
@@ -96,7 +91,7 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 
 			BeanUtils.copyProperties(model, entity);
 		} catch (Exception e) {
-			log.error("Error al convertir el modelo del Usuario en entidad", e);
+			throw new ConversionError("error al convertir el modelo "+model.toString()+" a entidad");
 		}
 
 		return entity;

@@ -11,7 +11,7 @@ import com.perrosv4.app.modelos.UsuarioModel;
 import com.perrosv4.app.servicios.UsuarioService;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/usuario")
 public class UsuarioController implements ControllerInterface<UsuarioModel> {
 

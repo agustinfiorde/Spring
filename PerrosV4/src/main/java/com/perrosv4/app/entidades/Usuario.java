@@ -37,7 +37,7 @@ public class Usuario implements Serializable {
 	private Foto fotoPerfil;
 	
 	@OneToMany
-	@OnDelete(action = OnDeleteAction.CASCADE)
+//	@OnDelete(action = OnDeleteAction.CASCADE)
 	private List<Perro> perros;
 	
 	private String nombre;

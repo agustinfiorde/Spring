@@ -13,5 +13,13 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
 server:
   port: 3000
+  
+fiordex:
+  carpeta:
+    fotos: web-files

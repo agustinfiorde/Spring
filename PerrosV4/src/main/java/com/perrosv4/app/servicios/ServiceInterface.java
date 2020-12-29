@@ -8,37 +8,43 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.perrosv4.app.errores.WebException;
+import com.perrosv4.app.excepciones.ValidationError;
 
 public interface ServiceInterface<M extends Object, E extends Object> {
 
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class, Exception.class })
-	public abstract E guardar(M m) throws WebException;
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public abstract E guardar(M m) throws Exception;
 
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class, Exception.class })
-	public abstract E eliminar(String id) throws WebException;
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public abstract void eliminar(String id) throws Exception;
 
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class, Exception.class })
-	public abstract E alta(String id) throws WebException;
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public abstract E alta(String id) throws Exception;
 
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { WebException.class, Exception.class })
-	public abstract E baja(String id) throws WebException;
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = { Exception.class })
+	public abstract E baja(String id) throws Exception;
+
+	@Transactional(readOnly = true)
+	public abstract List<E> listarTodos();
 
 	@Transactional(readOnly = true)
 	public abstract List<E> listarActivos();
 
 	@Transactional(readOnly = true)
-	public abstract Page<E> listarTodos(Pageable paginable, String q);
+	public abstract Page<E> listarActivos(Pageable paginable);
 
 	@Transactional(readOnly = true)
-	public abstract Page<E> lsitarTodos(Pageable paginable);
+	public abstract Page<E> buscarPorParametro(Pageable paginable, String q);
+
+	@Transactional(readOnly = true)
+	public abstract List<E> buscarPorParametro(String q);
 
 	@Transactional(readOnly = true)
 	public abstract Optional<E> buscarPorId(String id);
 
 	@Transactional(readOnly = true)
 	public abstract E getOne(String id);
-	
-	public void validar(M m) throws WebException;
-	
+
+	public void validar(M m) throws ValidationError;
+
 }

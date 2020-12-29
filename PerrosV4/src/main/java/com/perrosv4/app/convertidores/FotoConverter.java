@@ -8,31 +8,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.perrosv4.app.entidades.Foto;
+import com.perrosv4.app.excepciones.ConversionError;
 import com.perrosv4.app.modelos.FotoModel;
 import com.perrosv4.app.repositorios.FotoRepository;
 
+import lombok.RequiredArgsConstructor;
+
 @Component("FotoConverter")
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class FotoConverter extends Converter<FotoModel, Foto> {
 
-	private FotoRepository fotoRepository;
-
-	@Autowired
-	public FotoConverter(FotoRepository fotoRepository) {
-		this.fotoRepository = fotoRepository;
-	}
+	private final FotoRepository fotoRepository;
 
 	public FotoModel entityToModel(Foto entity) {
 		FotoModel model = new FotoModel();
 		try {
 			BeanUtils.copyProperties(entity, model);
 		} catch (Exception e) {
-			log.error("Error al convertir la entidad en el modelo de la Foto", e);
+			throw new ConversionError("Error al convertir la entidad "+entity.toString()+" a modelo"  );
 		}
 
 		return model;
 	}
 
-	public Foto modelToEntity(FotoModel model) {
+	public Foto modelToEntity(FotoModel model){
 		Foto entity;
 		if (model.getId() != null && !model.getId().isEmpty()) {
 			entity = fotoRepository.getOne(model.getId());
@@ -43,7 +42,7 @@ public class FotoConverter extends Converter<FotoModel, Foto> {
 		try {
 			BeanUtils.copyProperties(model, entity);
 		} catch (Exception e) {
-			log.error("Error al convertir el modelo de la Foto en la entidad", e);
+			throw new ConversionError("error al convertir el modelo "+model.toString()+" a entidad");
 		}
 
 		return entity;

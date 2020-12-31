@@ -89,7 +89,7 @@ public class FotoService implements ServiceInterface<FotoModel, Foto> {
 	}
 
 	@Override
-	public void eliminar(String id) {
+	public void eliminar(String id) throws Exception {
 		Foto foto = fotoRepository.getOne(id);
 
 		Path rootPath = Paths.get(carpetaFotos).resolve(foto.getFileName()).toAbsolutePath();
@@ -163,6 +163,12 @@ public class FotoService implements ServiceInterface<FotoModel, Foto> {
 			throw new ValidationError("La Foto tiene que estar presente");
 		}
 
+	}
+
+	@Override
+	public FotoModel pasarAtributos(FotoModel source, FotoModel target) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

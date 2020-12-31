@@ -1,7 +1,6 @@
 package com.perrosv4.app.controladores;
 
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,19 +29,19 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/foto")
 public class FotoController {
 
-	private Map<String, Object> response = new HashMap<>();
+	private HashMap<String, Object> response = new HashMap<>();
 	private Foto foto;
 	private final FotoService fotoService;
 	private final FotoConverter fotoConverter;
 
 	@GetMapping
 	public ResponseEntity<?> list() {
-		return null;
+		response.put("fotos", fotoService.listarTodos());
+		return ResponseEntity.status(200).body(response);
 	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<?> getOne(@PathVariable String id) {
-
 		response.put("foto", fotoService.getOne(id));
 		return ResponseEntity.status(200).body(response);
 	}
@@ -89,7 +88,7 @@ public class FotoController {
 	}
 
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> delete(@PathVariable String id) {
+	public ResponseEntity<?> delete(@PathVariable String id) throws Exception {
 		fotoService.eliminar(id);
 		response.put("message", "Eliminacion exitosa de la foto con el id " + id);
 		return ResponseEntity.status(200).body(response);

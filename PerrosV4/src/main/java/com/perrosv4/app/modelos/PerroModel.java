@@ -12,6 +12,7 @@ public class PerroModel implements Serializable {
 	
 	private String id;
 
+	private String idFotoPerfil;
 	private FotoModel fotoPerfil;
 	
 	private String nombre;

@@ -39,13 +39,13 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 				List<PerroModel> subModels = new ArrayList<>();
 
 				for (Perro objeto : entity.getPerros()) {
-					
+
 					subModels.add(perroConverter.entityToModel(objeto));
 					model.getIdPerros().add(objeto.getId());
 					seleccionada.append(objeto.getId()).append(",");
-					
+
 				}
-				
+
 				model.setPerros(subModels);
 				model.setPerrosSeleccionados(seleccionada.toString());
 			}
@@ -53,7 +53,7 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 			BeanUtils.copyProperties(entity, model);
 
 		} catch (Exception e) {
-			throw new ConversionError("Error al convertir la entidad "+entity.toString()+" a modelo"  );
+			throw new ConversionError("Error al convertir la entidad " + entity.toString() + " a modelo");
 		}
 
 		return model;
@@ -71,12 +71,13 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 
 		try {
 
+			BeanUtils.copyProperties(model, entity);
+			
 			if (model.getFotoPerfil() != null) {
 				entity.setFotoPerfil(fotoConverter.modelToEntity(model.getFotoPerfil()));
 			}
 
-			if (!model.getPerrosSeleccionados().equals("") && model.getIdPerros() != null
-					&& model.getIdPerros().size() > 0) {
+			if ( model.getIdPerros() != null && model.getIdPerros().size() > 0) {
 
 				List<Perro> list = new ArrayList<>();
 				for (String id : model.getIdPerros()) {
@@ -88,10 +89,9 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 
 				entity.setPerros(list);
 			}
-
-			BeanUtils.copyProperties(model, entity);
+			
 		} catch (Exception e) {
-			throw new ConversionError("error al convertir el modelo "+model.toString()+" a entidad");
+			throw new ConversionError("error al convertir el modelo " + model.toString() + " a entidad");
 		}
 
 		return entity;

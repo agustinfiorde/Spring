@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -18,16 +19,16 @@ import lombok.Data;
 @Entity
 public class Perro implements Serializable {
 
-	private static final long serialVersionUID = 6522896498689132123L;
-	
+	private static final long serialVersionUID = 6522893498689132123L;
+
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.LAZY)
 	private Foto fotoPerfil;
-	
+
 	private String nombre;
 	private String apodo;
 	private String raza;

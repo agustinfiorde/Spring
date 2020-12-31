@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,9 +28,9 @@ public class UsuarioService implements ServiceInterface<UsuarioModel, Usuario> {
 
 	@Override
 	public Usuario guardar(UsuarioModel m) throws Exception {
-
+		
 		validar(m);
-
+		
 		Usuario entidad = usuarioConverter.modelToEntity(m);
 
 		if (entidad.getCreado() != null) {
@@ -99,7 +100,7 @@ public class UsuarioService implements ServiceInterface<UsuarioModel, Usuario> {
 
 	@Override
 	public void validar(UsuarioModel m) throws ValidationError {
-
+		
 		if (m.getNombre() == null || m.getNombre().isEmpty() || m.getNombre().equals("")) {
 			throw new ValidationError("El Usuario tiene que tener un nombre");
 		}
@@ -108,12 +109,12 @@ public class UsuarioService implements ServiceInterface<UsuarioModel, Usuario> {
 			throw new ValidationError("El Usuario tiene que tener un apellido");
 		}
 
-		if (m.getDni() == null || m.getDni().isEmpty() || m.getDni().equals("")) {
+		if (m.getDni() == null || m.getDni().isEmpty()) {
 			throw new ValidationError("El Usuario tiene que tener un DNI");
 		}
 
-		if (m.getRol() == null || m.getRol() != Rol.ADMIN || m.getRol() != Rol.USUARIO) {
-			throw new ValidationError("El Usuario tiene que tener un DNI");
+		if (m.getRol() == null || !validarRol(m.getRol()) ) {
+			throw new ValidationError("El Usuario tiene que tener un rol valido");
 		}
 
 		if (m.getFotoPerfil() == null) {
@@ -125,5 +126,22 @@ public class UsuarioService implements ServiceInterface<UsuarioModel, Usuario> {
 		}
 
 	}
-
+	
+	public boolean validarRol(Rol rol) {
+		
+		boolean var = false;
+		for (Rol r : Rol.values()) {
+			var = var || r.equals(rol)?true:false;
+		}
+		return var;
+	}
+	
+	@Override
+	public UsuarioModel pasarAtributos(UsuarioModel source, UsuarioModel target) {
+		
+		BeanUtils.copyProperties(source, target, "id", "creado", "editado", "activo");
+		
+		return target;
+	}
+	
 }

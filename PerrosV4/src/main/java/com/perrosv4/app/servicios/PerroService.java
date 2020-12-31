@@ -4,11 +4,14 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.perrosv4.app.convertidores.PerroConverter;
 import com.perrosv4.app.entidades.Perro;
 import com.perrosv4.app.excepciones.ValidationError;
@@ -115,6 +118,14 @@ public class PerroService implements ServiceInterface<PerroModel, Perro> {
 			throw new ValidationError("El Perro tiene que tener una Foto de perfil");
 		}
 
+	}
+
+	@Override
+	public PerroModel pasarAtributos(PerroModel source, PerroModel target) {
+		
+		BeanUtils.copyProperties(source, target, "id", "creado", "editado", "activo");
+		
+		return target;
 	}
 
 }

@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -15,8 +17,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import com.perrosv4.app.enums.Rol;
 
@@ -36,8 +36,7 @@ public class Usuario implements Serializable {
 	@OneToOne
 	private Foto fotoPerfil;
 	
-	@OneToMany
-//	@OnDelete(action = OnDeleteAction.CASCADE)
+	@OneToMany(fetch = FetchType.LAZY)
 	private List<Perro> perros;
 	
 	private String nombre;

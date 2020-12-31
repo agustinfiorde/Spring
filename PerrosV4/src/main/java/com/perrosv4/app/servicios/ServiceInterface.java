@@ -3,12 +3,14 @@ package com.perrosv4.app.servicios;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.perrosv4.app.excepciones.ValidationError;
+import com.perrosv4.app.modelos.UsuarioModel;
 
 public interface ServiceInterface<M extends Object, E extends Object> {
 
@@ -46,5 +48,7 @@ public interface ServiceInterface<M extends Object, E extends Object> {
 	public abstract E getOne(String id);
 
 	public void validar(M m) throws ValidationError;
+	
+	public M pasarAtributos(M source, M target);
 
 }

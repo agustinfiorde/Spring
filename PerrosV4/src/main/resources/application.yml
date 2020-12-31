@@ -1,4 +1,7 @@
 spring:
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
   application:
     name: api-perros
   datasource:

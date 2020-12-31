@@ -16,6 +16,7 @@ public class UsuarioModel implements Serializable {
 
 	private String id;
 
+	private String idFotoPerfil;
 	private FotoModel fotoPerfil;
 
 	private List<PerroModel> perros;

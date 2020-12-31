@@ -14,8 +14,8 @@ import com.perrosv4.app.entidades.Foto;
 @Repository
 public interface FotoRepository extends JpaRepository<Foto, String> {
 
-	@Query("SELECT a from Foto a WHERE a.fileName = :fileName")
-	public Foto findByFileName(@Param("fileName") String fileName);
+	
+	public Foto findByFileName(String fileName);
 
 	@Query("SELECT a from Foto a WHERE a.activo = true ORDER BY a.fileName")
 	public List<Foto> searchAssets();

@@ -1,0 +1,303 @@
+
+main section.show{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     justify-content: space-around;
+     overflow: hidden;
+     padding-bottom: 20px;
+     width: 100%;
+}
+
+main section.show div.container{
+     align-items: flex-start;
+     display: flex;
+     flex-wrap: nowrap;
+     height: 40%;
+     justify-content: center;
+     min-height: 300px;
+     padding: 0px 5px;
+     width: 120%;
+}
+main section.show div.container div.slider{
+     align-items: center;
+     display: flex;
+     height: 100%;
+     justify-content: center;
+     margin: 0px 5px;
+     opacity: 0.6;
+     width: 30%;
+}
+
+main section.show div.container div.slider.center {
+     opacity: 0.9;
+     width: 40%;
+}
+main section.show div.container div.slider img{
+     border-radius: 20px;
+     height: 100%;
+     max-height: 300px;
+     object-fit: contain;
+     opacity: 0.9;
+     width: 100%;
+}
+
+main section.show div.description{
+     align-items: flex-start;
+     color: #ffffff;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     width: 80%;
+}
+
+main section.show div.description h2{
+     margin: 20px 0px;
+}
+
+main section.show div.description p{
+     line-height: 140%;
+}
+
+main section.show div.buttons{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     justify-self: flex-end;
+     width: 80%;
+     z-index: 1;
+}
+
+main section.show div.buttons button{
+     border: none;
+     border-radius: 30px;
+     color: white;
+     cursor: pointer;
+     font-size: 14px;
+     margin: 5px 0px;
+     max-width: 300px;
+     padding: 15px;
+     width: 100%;
+}
+
+main section.show div.buttons button p{
+     font-weight: 600;
+}
+main section.show div.buttons button.continue{
+     color: #C40E45;
+     background-color: #ffffff;
+     border-radius: 60px;
+
+}
+
+main section.show div.slider-index{     
+     align-items: center;
+     display: flex;
+     justify-content: center;
+}
+
+main section.show div.slider-index span{
+     border-radius: 5px;
+     background-color:#474747;
+     height: 10px;
+     margin: 0px 10px;
+     width: 10px;
+}
+
+/*---------------------*/
+/*--------FORM---------*/
+/*---------------------*/
+
+/*--SELECCIONAR SHOW---*/
+/*---------------------*/
+
+main section.form{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     justify-content: space-around;
+     overflow: hidden;
+     width: 100%;
+}
+main section.form div.form-container{
+     height: 100%;
+     width: 80%;
+}
+
+main section.form div.form-container form{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     height: 100%;
+     justify-content: center;
+     padding-bottom: 10px;
+     width: 100%;
+}
+
+main section.form div.form-container form div.show-type{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     height: 80%;
+     justify-content: center;
+     width: 100%;
+}
+main section.form div.form-container form div.show-type div.option{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     margin: 10px 0px;
+     width: 100%;
+}
+main section.form div.form-container form div.show-type div.option label{
+     align-items: center;
+     border: solid 1px #fff;
+     border-radius:5px;
+     cursor:pointer;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     height: 60px;
+     width: 60px;
+}    
+main section.form div.form-container form div.show-type div.option a{
+     border-radius:5px;
+     color: #ffffff;
+     margin-bottom:10px;
+
+}
+
+main section.form div.form-container form div.show-type div.option a:focus{
+     background-color: #F7B339;
+}
+
+main section.form div.form-container form div.show-type div.option label i{
+     font-size: 30px;
+}
+
+main section.form div.form-container form div.show-type div.option h3{
+     color: #ffffff;
+}
+
+/*---SELECCIONAR FECHA---*/
+/*-----------------------*/
+
+main section.form div.form-container form div.show-date{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     height: 80%;
+     justify-content: space-around;
+     max-width: 400px;
+     position: relative;
+     width: 100%;
+}
+
+main section.form div.form-container form div.show-date div.backlink{
+     align-items: center;
+     color: #F7B339;
+     display: flex;
+     left: 0px;
+     position: absolute;
+     top:-20px;
+     
+}
+main section.form div.form-container form div.show-date div.backlink a{
+     align-items: center;
+     color: #F7B339;
+     display: flex;
+     margin-right: 5px;
+}
+
+main section.form div.form-container form div.show-date div.backlink a h3{
+     margin-left: 5px;
+}
+
+main section.form div.form-container form div.show-date div.heading{
+     color: #ffffff;
+     margin-bottom: 20px;
+     width: 100%;
+}
+
+main section.form div.form-container form div.show-date div.option-date{
+     align-items: center;
+     display: flex;
+     flex-direction: column;
+     width: 100%;
+}
+
+main section.form div.form-container form div.show-date div.option-date label{
+     align-items: center;
+     border: solid 1px #fff;
+     border-radius: 30px;
+     display: flex;
+     justify-content: space-around;
+     height: 50px;
+     margin: 10px;
+     width: 100%;
+}
+
+main section.form div.form-container form div.show-date div.option-date label i{
+     background: none;
+     border: none;
+     color: #ffffff;
+     padding-left: 20px;
+     width: 20%;
+}
+
+main section.form div.form-container form div.show-date div.option-date label input{
+     background: none;
+     border: none;
+     color: #ffffff;
+     height: 30px;
+     margin-right: 10px;
+     width: 80%;
+}
+
+
+
+
+/*---------------------*/
+/*---BOTON CONTINUAR---*/
+/*---------------------*/
+main section.form div.buttons{
+     justify-self: flex-end;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     width: 100%;
+     z-index: 1;
+}
+
+main section.form div.buttons button,
+main section.show div.buttons a{
+     margin: 5px 0px;
+     padding: 15px;
+     border: none;
+     border-radius: 30px;
+     font-size: 14px;
+     color: white;
+     width: 100%;
+     max-width: 400px;
+     cursor: pointer;
+}
+
+main section.form div.buttons button p{
+     font-weight: 600;
+}
+main section.form div.buttons button.continue{
+     color: #C40E45;
+     background-color: #ffffff;
+     border-radius: 60px;
+
+}
+
+
+
+
+
+
+

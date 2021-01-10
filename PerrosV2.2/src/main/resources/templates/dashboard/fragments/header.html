@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:fragment="head">
+
+<title>PerrAPP | Dashboard</title>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
+
+<link rel="icon" href="/img/favicon.jpg" type="image/x-icon" />
+
+<link rel="stylesheet" href="/backend/bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+<link rel="stylesheet" href="/backend/bower_components/Ionicons/css/ionicons.min.css" />
+<link rel="stylesheet" href="/backend/css/skins/_all-skins.min.css" />
+<link rel="stylesheet" href="/backend/bower_components/select2/dist/css/select2.min.css" />
+<link rel="stylesheet" href="/backend/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" />
+<link rel="stylesheet" href="/backend/cubo/pivot.css" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic" />
+<link rel="stylesheet" href="/backend/bower_components/fullcalendar/dist/fullcalendar.min.css" />
+<link rel="stylesheet" href="/backend/bower_components/fullcalendar/dist/fullcalendar.print.min.css" media="print" />
+<link rel="stylesheet" href="/backend/bower_components/bootstrap-daterangepicker/daterangepicker.css" />
+<link rel="stylesheet" href="/backend/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="/backend/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" />
+<link rel="stylesheet" href="/backend/plugins/timepicker/bootstrap-timepicker.min.css" />
+
+
+<link rel="stylesheet" href="/backend/css/AdminLTE.css" />
+<link rel="stylesheet" href="/backend/bower_components/tag-input/bootstrap-tagsinput.css" />
+</head>
+
+
+<body class="hold-transition skin-red-light sidebar-mini">
+
+	<div class="wrapper">
+
+		<header class="main-header" th:fragment="header">
+			<a href="/" class="logo">
+				<span class="logo-mini"><b>P-APP</b></span> <span class="logo-lg"><b>PerrAPP</b></span>
+			</a>
+			<nav class="navbar navbar-static-top">
+				<a href="#" class="fa fa-bars" data-toggle="push-menu" role="button" style="color: white; padding-top: 17px; font-size: 16px;">
+					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+				</a>
+
+				<div class="navbar-custom-menu">
+
+					<div style="margin-top: 15px; margin-right: 5px;">
+						<a th:href="@{/user/profile}" style="color:white; margin-right: 5px;">
+							<i class="fa fa-user-cog"></i>
+							<span>Settings</span>
+						</a>
+						<span style="color:white;"> | </span>
+						<a href="/logout" style="color: white; margin-left:5px;">
+							<i class="fa fa-sign-out-alt" style="margin-right: 4px;"></i>
+							Logout
+						</a>
+					</div>
+				</div>
+			</nav>
+		</header>
+	</div>
+</body>
+</html>

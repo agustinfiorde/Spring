@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div th:fragment="paginador">
+
+		<div style="text-align: center">
+			<ul class="pagination pagination-sm no-margin">
+				<li th:each="pageNo : ${#numbers.sequence(0, page.totalPages - 1)}">
+					<a th:href="@{${url  + (f != null ? f : '')}(page=${pageNo},size=${page.size},q=${q},sort=${sort_field == null ? '' : sort_field + ',' + sort_dir})}">
+						<span th:if="${pageNo ge 0}" th:text="${pageNo + 1}" th:class="${page.number eq pageNo}? 'lblue' : ''"></span>
+					</a>
+				</li>
+				<li th:if="${page.number + 1 lt page.totalPages}">
+					<a th:href="@{${url + (f != null ? f : '')}(page=${page.number+1},size=${page.size},q=${q},sort=${sort_field == null ? '' : sort_field + ',' + sort_dir})}">
+						<i class="fa fa-arrow-right floatl lblue"></i>
+					</a>
+				</li>
+				<li th:if="${page.number + 1 ge page.totalPages}">
+					<a href="#">
+						<i class="fa fa-arrow-right floatl lblue"></i>
+					</a>
+				</li>
+			</ul>
+			<div class="col-sm-12" style="font-size: 11px;">
+				Mostrando <span th:text="${page.numberOfElements}"></span> de <span th:text="${page.totalElements}"></span> objetos.
+			</div>
+		</div>
+	</div>
+	<th:block th:fragment="columna">
+		<div th:class="${clase}">
+			<a th:href="@{${url + (f != null ? f : '')}(page=0,size=${page.size},q=${q},sort=${sort_dir == null or sort_dir == 'DESC' ? campo + ',asc' : campo + ',desc'})}">
+				<h4 th:text="${columna}"></h4>
+			</a>
+			<div class="iconarrow">
+				<i th:if="${sort_field == campo and sort_dir == 'DESC'}" class="fa fa-angle-down"></i>
+				<i th:if="${sort_field == campo and sort_dir == 'ASC'}" class="fa fa-angle-up"></i>
+			</div>
+		</div>
+	</th:block>
+</html>

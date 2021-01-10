@@ -1,0 +1,40 @@
+header {
+     display: flex;
+     flex-direction: row;
+     height: 12vh;
+     padding-top: 10px;
+     width: 100%;
+}
+header div.izquierda{
+     align-items: center;
+     display: flex;
+     width: 50%;
+}
+header div.izquierda img{
+     margin-left: 30px;
+     width: 80px;
+}
+header div.derecha{
+     align-items: center;
+     display: flex;
+     width: 50%;
+}
+header div.derecha nav.menu-bars{
+     display: flex;
+     justify-content: flex-end;
+     margin-right: 30px;
+     width: 100%;
+}
+
+header div.derecha nav.menu-bars i{
+     cursor: pointer;
+     font-size: 30px;
+}
+
+header.black div.derecha nav.menu-bars i{
+     color: #474747
+}
+
+header.white div.derecha nav.menu-bars i{
+     color: #ffffff
+}

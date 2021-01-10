@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+	<div class="col-md-3" th:fragment="bandejas">
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title" style="margin-top: 10px;">Carpetas</h3>
+
+				<div class="box-tools">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body no-padding">
+				<ul class="nav nav-pills nav-stacked">
+					<li th:classappend="${title == 'Bandeja de Entrada' ? 'active' : ''}">
+						<a th:href="@{/comunicado/listado}">
+							<i class="fa fa-inbox"></i>
+							Bandeja de Entrada <span class="label label-primary pull-right" th:if="${title == 'Bandeja de Entrada'}"  th:text="${page.totalElements}"></span>
+						</a></li>
+					<li th:classappend="${title == 'Enviados' ? 'active' : ''}">
+						<a th:href="@{/comunicado/enviados}">
+							<i class="fa fa-envelope-o"></i>
+							Enviados <span class="label label-primary pull-right" th:if="${title == 'Enviados'}" th:text="${page.totalElements}"></span>
+						</a>
+					</li>
+					<li th:classappend="${title == 'Borrador' ? 'active' : ''}"><a th:href="@{/comunicado/borrador}">
+							<i class="fa fa-file-text-o"></i>
+							Borrador <span class="label label-primary pull-right" th:if="${title == 'Borrador'}"  th:text="${page.totalElements}"></span>
+						</a>
+					</li>
+					<li th:classappend="${title == 'Papelera' ? 'active' : ''}">
+						<a th:href="@{/comunicado/papelera}">
+							<i class="fa fa-trash-o"></i>
+							Papelera <span class="label label-primary pull-right" th:if="${title == 'Papelera'}"  th:text="${page.totalElements}"></span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+		<div class="box">
+			<div class="box-header with-border">
+				<h3 class="box-title" style="margin-top: 10px;">Etiquetas</h3>
+
+				<div class="box-tools">
+					<button type="button" class="btn btn-box-tool" data-widget="collapse">
+						<i class="fa fa-minus"></i>
+					</button>
+				</div>
+			</div>
+			<div class="box-body no-padding">
+				<ul class="nav nav-pills nav-stacked">
+					<li th:classappend="${title == 'Alertas' ? 'active' : ''}"><a th:href="@{/comunicado/alertas}">
+							<i class="fa fa-square text-red"></i>
+							Alertas <span class="label label-primary pull-right" th:if="${title == 'Alertas'}"  th:text="${page.totalElements}"></span>
+						</a></li>
+					<li th:classappend="${title == 'Eventos' ? 'active' : ''}"><a th:href="@{/comunicado/eventos}">
+							<i class="fa fa-square text-yellow"></i>
+							Eventos <span class="label label-primary pull-right" th:if="${title == 'Eventos'}"  th:text="${page.totalElements}"></span>
+						</a></li>
+					<li th:classappend="${title == 'Comunicados' ? 'active' : ''}"><a th:href="@{/comunicado/comunicados}">
+							<i class="fa fa-square text-light-blue"></i>
+							Comunicados <span class="label label-primary pull-right" th:if="${title == 'Comunicados'}"  th:text="${page.totalElements}"></span>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

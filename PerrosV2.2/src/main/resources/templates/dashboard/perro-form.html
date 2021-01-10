@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="dashboard/fragments/header :: head">
+</head>
+
+<body class="hold-transition skin-blue-light sidebar-mini">
+
+	<div class="wrapper">
+
+		<div th:replace="dashboard/fragments/header :: header">...</div>
+		<div th:replace="dashboard/fragments/menu :: menu">...</div>
+
+		<!-- Content Wrapper. Contains page content -->
+		<div class="content-wrapper">
+			<!-- Content Header (Page header) -->
+			<section class="content-header">
+				<h1>
+					Perros <small>Utilice este m�dulo para gestionar perros.</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li>
+						<a href="#">
+							<i class="fa fa-dashboard"></i>
+							Home
+						</a>
+					</li>
+					<li>
+						<a href="#">PerrAPP</a>
+					</li>
+					<li class="active">Perros</li>
+				</ol>
+			</section>
+
+			<!-- Main content -->
+			<section class="content">
+
+				<!-- Default box -->
+				<div class="box">
+				    <div class="box-header with-border">
+						<h3 class="box-title" style="margin-top: 10px;">Cargar Perro</h3>
+					</div>
+					<div class="box-body">
+
+						<div th:if="${error != null}" class="alert alert-danger" role="alert">
+							<strong>¡Error!</strong> <span th:text="${error}">error</span>
+						</div>
+
+						<div th:if="${action == 'eliminar'}" class="alert alert-danger" role="alert">
+							<strong>�Alto!</strong> �Se encuentra seguro de que desea proceder con la eliminación del perro?
+						</div>
+
+						<div th:if="${action == 'recuperar'}" class="alert alert-danger" role="alert">
+							<strong>�Alto!</strong> �Se encuentra seguro de que desea proceder con la recuperación del perro?
+						</div>
+
+						<form class="vertical-form" id="formulario" method="POST" th:action="@{/perro/} + ${action == null or action == 'update' ? 'save' : action}" th:object="${perro}" >
+
+							<input type="hidden" class="form-control" th:field="*{id}" th:value="*{id}" />
+							
+							<div class="form-group">
+								<label for="name">Nombre</label>
+								<input type="text" class="form-control" id="name" placeholder="Ingrese el nombre del Perro" th:field="*{nombre}" th:value="*{nombre}" th:disabled="${action == 'delete'}" />
+							</div>
+
+							
+							<div class="form-group">
+								<input type="date" th:if= "${perro.creado != null}" th:field="*{creado}"  style="display:none;"/>
+								<input type="date" th:if= "${perro.editado != null}" th:field="*{editado}"  style="display:none;"/>
+							</div>
+
+
+						</form>
+
+						<button type="submit" class="btn btn-danger" form="formulario" th:if="${action == 'delete'}">Delete</button>
+						<button type="submit" class="btn btn-success" form="formulario" th:if="${action == null or action == 'save'}">Save</button>
+						<button type="submit" class="btn btn-primary" form="formulario" th:if="${action == 'update'}">Update</button>
+
+						<a th:href="@{/show/list}">
+							<button type="button" class="btn btn-default">Cancelar</button>
+						</a>
+					</div>
+				</div>
+
+			</section>
+		</div>
+		<div th:replace="dashboard/fragments/footer :: footer">...</div>
+	</div>
+		
+	</body>
+</html>

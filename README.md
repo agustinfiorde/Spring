@@ -24,6 +24,12 @@
 -Cada determinado tiempo todos los perros se daran de baja de forma automatica.
 </p>
 
+<h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV1.4" target="_blank">Perros V1.3 PDF, Excel y CSV</a></h3>
+<p align="left"> 
+-Es un ejemplo basico donde se pueden cargar perros y darlos de alta o baja.
+-Tambien se puede descargar todos los perros en un PDF, un excel o un CSV.
+</p>
+
 <h3 align="left"><a href="https://github.com/agustinfiorde/Spring/tree/master/PerrosV2" target="_blank">Perros V2 Login, ErrorController, Spring Security y Lombok</a></h3>
 <p align="left"> 
 -Es un ejemplo Intermedio donde se pueden cargar perros y darlos de alta o baja.

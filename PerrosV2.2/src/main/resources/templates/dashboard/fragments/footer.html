@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+	<div th:fragment="footer" class="main-footer">
+
+		<span>© <strong>Gira por las Casas</strong> Europa
+		</span>
+
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.1.min.js"></script>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script>
+			$.validate({
+				lang : 'es'
+			});
+		</script>
+
+		<script src="/backend/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="/backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="/backend/bower_components/fastclick/lib/fastclick.js"></script>
+		<script src="/backend/bower_components/select2/dist/js/select2.full.min.js"></script>
+
+
+		<script src="/backend/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<script src="/backend/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
+
+		<script src="/backend/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+		<script src="/backend/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+		<script src="/backend/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+		<script src="/backend/plugins/iCheck/icheck.min.js"></script>
+		<script src="/backend/bower_components/fastclick/lib/fastclick.js"></script>
+
+		<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+		<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
+		<script src="/backend/bower_components/tag-input/bootstrap-tagsinput.min.js"></script>
+		<script src="/backend/js/adminlte.min.js"></script>
+		<script src="/backend/js/demo.js"></script>
+
+		<script>
+			$(document).ready(function() {
+				$('.sidebar-menu').tree()
+			})
+		</script>
+	</div>
+</body>
+</html>

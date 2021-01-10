@@ -1,0 +1,999 @@
+/* ESTILOS GENERALES */
+
+
+* {box-sizing:border-box;}
+
+html,body{height: 100vh; margin: 0;}
+body{font-family: sans-serif; background-color: #f5f5f5;}
+ul{ list-style: none;  margin-bottom: 0px; padding: 0;}
+a, a:hover{text-decoration: none;}
+p{margin: 0;}
+
+
+#cabecera{height: 15vh; width: 100%; padding-bottom: 2px;}
+#cuerpo{height: 85vh; width: 100%;}
+.cont-botones{width: 33.33%; float: left; height: 22vh; border: 3px solid #fff; position: relative;}
+.publi-bodegas{width: 100%; height: auto; float: left; height: 21vh; background-color: #9b8960; border: 3px solid #fff;}
+.publi-marcas{width: 100%; height: auto; float: left; height: 20vh; background-color: #9b8960; border: 3px solid #fff;}
+.box1{width: 100%; float: left; height: auto;}
+
+header{width: 100%; height: 55px; float: left; background-color: #9b8960; margin-bottom: 20px; box-shadow: 0px 0px 6px rgba(0, 3, 6, 0.5); position: fixed; z-index: 9999;}
+nav{width: 100%; height: 55px; float: left; padding: 12px 20px;}
+.cont-idioma, .cont-arrow, .cont-home{width: 25px; height: 25px; border-radius: 50%; border: 2px solid #fff; float: left; margin-left: 11px; margin-top: 3px;}
+.cont-arrow img, .cont-home img{float: left; width: 100%; height: auto;}
+.idiomas, .manejo{float: right;}
+.divisor{height: 31px; width: 2px; background-color: #fff; margin-left: 11px; float: right;}
+
+.skin-blue-light .sidebar-menu>li>a{
+	font-weight: 100 !important;	
+}
+
+button{border:0; transition-duration: 0.5s; box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36);}
+.btn-black{
+    width: 170px; 
+    height: 36px; 
+    background-color: #000; 
+    border-radius: 18px; 
+    font-family: 'Montserrat', sans-serif; 
+    color: #fff; 
+    font-weight: 300; 
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.btn-lista{
+    width: 100%; 
+    min-height: 36px;
+    height: auto; 
+    background-color: #673134;
+    border-radius: 18px; 
+    font-family: 'Montserrat', sans-serif; 
+    color: #fff; 
+    font-weight: 300; 
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+.btn-tarjeta{
+    width: 143px; 
+    height: 28px; 
+    background-color: #673134; 
+    border-radius: 14px; 
+    font-family: 'Montserrat', sans-serif; 
+    color: #fff; 
+    font-weight: 300; 
+    font-size: 17px;
+}
+.btn-buscador {
+    width: 100%;
+    height: 60px;
+    background-color: #673134;
+    border-radius: 14px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    font-weight: 600;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+.btn-black:hover{background-color: #fff; color: #000;}
+.btn-tarjeta:hover, .btn-lista:hover{background-color: #fff; color: #673134;}
+
+.fondo-presentacion{
+    width: 100%;
+    background: -webkit-linear-gradient(left, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 83%, rgba(245,245,245,1) 100%);
+    background: -o-linear-gradient(left, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 83%, rgba(245,245,245,1) 100%);
+    background: -ms-linear-gradient(left, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 83%, rgba(245,245,245,1) 100%);
+    background: linear-gradient(to right, rgba(245,245,245,1) 0%, rgba(255,255,255,1) 19%, rgba(255,255,255,1) 83%, rgba(245,245,245,1) 100%);
+    position: relative;
+    display: table;
+}
+
+.logo-cliente{width: 30%; margin: 0px auto; display: block; margin-bottom: 6%;}
+.bienvenida{width: 20%; margin: 0px auto; display: block; margin-bottom: 10px;}
+.presentacion-cliente{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 300; 
+    line-height: 30px;
+    text-align: center;
+    color: #4d4d4d;
+    max-width: 600px;
+    margin: 0px auto;
+    margin-bottom: 2%;
+}
+.logo-carta-digital{width: 10%; margin: 0px auto; display: block; position: absolute; position: absolute; bottom: 35px; left: 0; right: 0;}
+
+.presentacion{display: table-cell; vertical-align: middle; height: auto;}
+.presentacion .btn-black{display: block; margin: 0px auto; margin-bottom: 20px;}
+.presentacion hr{width: 12%; margin: 0px auto; border: 0.5px solid #000; margin-bottom: 20px;}
+
+.logo{width: 25%; height: 100%; float: left; display: table;}
+.logo img{width: 60%; margin: 0px auto; display: block;}
+.publi{width: 75%; height: 100%; float: left;}
+
+.carousel-inner, .carousel-item, .carousel{height: 100%;}
+.carousel-item, .espanol, .ingles, .portugues, .foto-bodega-lugar, .foto-enologo, .contimgback2 {background: no-repeat center center scroll;}
+.contimgback1{background: no-repeat center bottom scroll;}
+.contimgback3 {background: no-repeat left top scroll;}
+.contimgback4, .contimgback5{background: no-repeat center left scroll;}
+.contimgback6{background: no-repeat center top scroll;}
+.carousel-item, .espanol, .ingles, .portugues, .foto-bodega-lugar, .foto-bodega2, .foto-enologo, .contimgback2, .contimgback1, 
+.contimgback3, .contimgback4, .contimgback5, .contimgback6, .buscador-cabecera, .backvino { 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.backvino{height: 230px; background-position: center center; width: 70px; margin: 0px auto;}
+.publi1{background-image: url("../img/slider-prueba/publicidad-ejemplo.jpg");}
+.espanol{background-image: url("../img/iconos/EspañolG.png");}
+.ingles{background-image: url("../img/iconos/InglesG.png");}
+.portugues{background-image: url("../img/iconos/PortuguesG.png");}
+.espanol:hover, .espanol-activo{background-image: url("../img/iconos/EspañolM.png");}
+.ingles:hover, .ingles-activo{background-image: url("../img/iconos/InglesM.png");}
+.portugues:hover, .portugues-activo{background-image: url("../img/iconos/PortuguesM.png");}
+.buscador-cabecera{background-image: url("../img/elementos/cabecera-buscador.jpg"); width: 100%; height: 188px; position: relative; float: left;}
+.vinos{background-color: #c4d2dd;}
+.bodegas{background-color: #8bd9bf;}
+.buscador{background-color: #9caca3;}
+.platos{background-color: #e1db67;}
+.lista{background-color: #f3a780;}
+.copa{background-color: #9e7e9e;}
+.cont-bodegas{width: 33.33%; float: left; height: 100%; padding: 10px; display: table;}
+.cont-marcas{width: 25%; float: left; height: 100%; padding: 10px; display: table;}
+.cont-bodegas img, .cont-marcas img{width: 60%; margin: 0px auto; display: block;}
+.boximgb{display: table-cell; vertical-align: middle;}
+.bloque{width: 50%; float: left; margin: 0 25%; height: 100%;}
+.vinos-bloque{background-color: #556977; opacity: 0.3;}
+.bodegas-bloque{background-color: #80bca4;}
+.buscador-bloque{background-color: #809184;}
+.platos-bloque{background-color: #eae288;}
+.lista-bloque{background-color: #e5b094;}
+.copa-bloque{background-color: #9b589b;}
+
+.cont-nombre{position: absolute; width: 100%; top: 0; border-left: 0; height: 100%; padding: 10px; z-index: 999;}
+.contnimg1 {
+    width: 63%;
+    margin-top: 2%;
+    margin-left: 8%;
+}
+.contnimg2{
+    width: 52%;
+    margin-top: 7%;
+    margin-left: 3%;
+}
+.contnimg3 {
+    width: 69%;
+    margin-top: 5%;
+    margin-left: 6%;
+}
+.contnimg4{
+    width: 52%;
+    margin-top: 3%;
+    margin-left: 2%;
+}
+.contnimg5{
+    width: 52%;
+    margin-top: 4%;
+    margin-left: 3%;
+}
+.contnimg6{
+    width: 46%;
+    margin-top: -1%;
+    margin-left: 8%;
+}
+.contimgback1 {
+    background-image: url("../img/elementos/vino.png");
+    position: absolute;
+    top: 0;
+    right: 11%;
+    width: 27%;
+    height: 97%;
+    z-index: 99;
+}
+.contimgback2{background-image: url("../img/elementos/barril.png"); position: absolute; top: 0; right: 18px; width: 40%; height: 100%; z-index: 99;}
+.contimgback3 {
+    background-image: url("../img/elementos/lupa.png");
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 55%;
+    height: 100%;
+    z-index: 999;
+}
+.contimgback4 {
+    background-image: url("../img/elementos/plato.png");
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    z-index: 99;
+}
+.contimgback5 {
+    background-image: url("../img/elementos/menu2.png");
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 49%;
+    height: 100%;
+    z-index: 99;
+}
+.contimgback6 {
+    background-image: url("../img/elementos/copas.png");
+    position: absolute;
+    bottom: 0;
+    right: 85px;
+    width: 28%;
+    height: 95%;
+    z-index: 99;
+}
+
+.tarjeta-vino{
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 23%; 
+    margin: 0 1% 20px 1%; 
+    position: relative;
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36); 
+    padding: 17px 23px;
+    float: left;
+}
+.tarjeta-vino-detalle{
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 100%; 
+    margin: 0px auto; 
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36); 
+    padding: 17px 23px;
+    height: auto;
+    margin-bottom: 40px;
+    float: left;
+}
+.foto-vino{width: 90px; height: auto; float: left;}
+.foto-vino img {
+    max-width: 100%;
+    height: auto;
+    max-height: 230px;
+    margin: 0px auto;
+    display: block;
+}
+.info-vino{width: calc(100% - 90px); height: auto; float: left; padding: 10px 0 5px 20px;}
+.vermas{width: 100%; height: auto; float: left;}
+.vermas button{margin: 0px auto; display: block; margin-top: 10px;}
+.box-info-elemento{width: 100%; float: left; min-height: 70px;}
+.title-elemento, .subtitle-elemento{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    line-height: 19px;
+    text-align: left;
+    color: #673134;
+    width: 100%;
+    font-size: 16px;
+    float: left;
+}
+.title-elemento-detalle{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 800; 
+    line-height: 34px;
+    text-align: left;
+    color: #673134;
+    width: 100%;
+    font-size: 28px;
+    float: left;
+    margin-bottom: 34px;
+}
+.subtitle-elemento-detalle, .info-elemento-detalle{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 300; 
+    line-height: 34px;
+    text-align: left;
+    color: #000;
+    width: 100%;
+    font-size: 18px;
+    float: left;
+}
+.info-elemento{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 400; 
+    line-height: 20px;
+    text-align: left;
+    color: #000;
+    width: 100%;
+    font-size: 13px;
+    float: left;
+}
+.precio-elemento{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    line-height: 32px;
+    text-align: left;
+    color: #673134;
+    width: 100%;
+    font-size: 27px;
+    float: left;
+}
+.bodega-tarjeta{height: 60px; width: auto; float: left;}
+.modelo-vista, .modelo-vista2{width: 100%; float: left; height: auto; padding-top: 75px;}
+.buscador-icon{width: auto; height: 31px; float: left; margin-right: 30px;}
+.nombre-categoria{width: auto; height: 31px; float: left;}
+
+.pagination {
+    float: right;
+    width: auto;
+    height: auto;
+    margin: 10px 20px 25px 0;
+    font-family: 'Montserrat';
+    font-weight: 500;
+}
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+.pagination a.active {
+  background-color: #9b8960;
+  color: white;
+  border-radius: 5px;
+}
+.pagination a:hover:not(.active) {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+.foto-bodega-detalle, .info-vino-detalle{width: 60%; float: right; padding-left: 40px;}
+.foto-vino-detalle{width: 40%; float: left;}
+.foto-vino-detalle img {
+    float: right;
+    width: auto;
+    height: 500px;
+    margin-top: 20px;
+}
+.foto-bodega-detalle img{height: 140px; float: left; width: auto;}
+.subinfo-elemento-detalle{float: left; margin-top: 30px;}
+.datos-detalles{width: 100%; float: left; height: auto; margin-bottom: 6px;}
+.datos-detalles1{width: 30px; height: 30px; float: left; border-radius: 50%; background-color: #673134; padding: 5px;}
+.datos-detalles1 img{float: left; width: 100%; height: auto;}
+.datos-detalles2{width: calc(100% - 30px); padding-left: 10px; float: left;}
+.datos-detalles2 p{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    line-height: 34px;
+    text-align: left;
+    color: #673134;
+    width: 100%;
+    font-size: 19px;
+    float: left;
+}
+.tarjeta-bodega-detalle{
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 670px; 
+    margin: 0px auto; 
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36); 
+    height: auto;
+    margin-bottom: 40px;
+}
+.foto-bodega-lugar{width: 100%; height: 400px; border-radius: 10px 10px 0 0;}
+.fotobodega2, .ejemplobodega{background-image: url("../img/ejemplos/vinedo.jpg");}
+.nombre-bodega{width: 340px; height: 48px; border-radius: 5px; background-color: #673134; padding: 0 20px; margin: 0px auto; margin-top: -24px;}
+.nombre-bodega p{width: 100%; text-align: center; line-height: 48px; font-size:23px; font-family: 'Montserrat', sans-serif; font-weight: 600; color:#fff; }
+.descripcion-bodega{width: 100%; height: auto; padding: 20px 30px 40px 30px;}
+.descripcion-bodega p, .descripcion-enologo p{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 300; 
+    line-height: 34px;
+    text-align: left;
+    color: #000;
+    width: 100%;
+    font-size: 16px; 
+}
+.tarjeta-enologo-detalle{
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 570px; 
+    margin: 0px auto; 
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36); 
+    height: auto;
+    margin-bottom: 40px;
+    padding: 17px 30px 25px 30px;
+    margin-top: 20px;
+}
+.foto-enologo {
+    border: 7px solid #dcdcdc;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36);
+    margin: 0px auto;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+.ejemploenologo{background-image: url("../img/ejemplos/enologo.jpg");}
+.enologop{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    line-height: 16px;
+    text-align: center;
+    font-style: italic;
+    color: #673134;
+    width: 100%;
+    font-size: 13px;
+    float: left;
+    margin-left: 2px;
+    margin-bottom: 2px;
+}
+.enologop2{
+    font-family: 'Montserrat', sans-serif; 
+    font-weight: 600; 
+    line-height: 28px;
+    text-align: center;
+    color: #673134;
+    width: 100%;
+    font-size: 23px;
+    float: left;
+}
+.nombre-enologo{
+    width: 100%;
+    height: auto;
+    float: left;
+    margin-bottom: 20px;
+}
+.nombre-enologo img {
+    width: 18px;
+    height: auto;
+    margin-right: 13px;
+    margin-top: -23px;
+}
+.seleccion-bodega{width: 100%; text-align: center; font-family: 'Montserrat', sans-serif; font-weight: 800; margin-top: 40px; color: #9b8960; margin-bottom: 50px;}
+.seleccion-bodega span{width: 100%; font-size: 40px; float: left; letter-spacing: 2px;}
+.lista-bodega {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 50px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 3px 2px 4px rgba(0, 3, 6, 0.5);
+}
+.lista-bodega p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    line-height: 50px;
+    text-align: center;
+    color: #9b8960;
+    width: 100%;
+    font-size: 18px;
+}
+.lista-bodega:hover{background-color: #fff;}
+.lista-bodega:hover p{ font-weight: 600; font-style: italic; letter-spacing: 1px}
+.tarjeta-plato{
+    background-color: #fff; 
+    border-radius: 10px; 
+    width: 100%; 
+    margin: 0 0 20px 0; 
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36); 
+    padding: 17px 23px;
+    height: auto;
+    float: left;
+}
+.foto-plato{width: 40%; float: left;}
+.foto-plato img{width: 100%; height: auto;}
+.info-plato{width: 60%; float: left; padding-left: 20px;}
+
+.title-plato{width: 100%; text-align: left; font-family: 'Montserrat', sans-serif; font-weight: 700; margin-top: 0px; color: #000; margin-bottom: 10px; padding-left: 10px; font-size: 25px;}
+.precio-lista{width: 120px; text-align: right; float: left; font-weight: 600; font-size: 18px;}
+.nombre-lista{width: calc(100% - 120px); text-align: left; float: left; font-weight: 400;}
+.lista-simplificada {
+    width: calc(100% - 80px);
+    float: left;
+    margin: 0 40px 30px 40px;
+}
+.lista-simplificada h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    width: auto;
+    font-size: 21px;
+    border-bottom: 1px solid #f6f6f6;
+    padding-bottom: 5px;
+    float: left;
+    margin-bottom: 10px;
+}
+.lista-simplificada ul li{width: 100%; float: left; font-family: 'Montserrat', sans-serif; font-size: 16px; line-height: 24px; margin-bottom: 10px;}
+.tarjeta-buscador p{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    width: auto;
+    font-size: 18px;
+    text-align: center;
+    padding-bottom: 5px;
+    width: 100%;
+}
+.cabecera-buscador img{width: 20%; margin: 60px 40% 40px 40%; float: left;}
+.cabecera-buscador p {
+    width: 100%;
+    float: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    line-height: 21px;
+    margin-bottom: 80px;
+    margin-top: 70px;
+    font-weight: 800;
+    text-align: center;
+    padding: 0 55px;
+    color: #9b8960;
+}
+.btn-buscador img {
+    width: 26px;
+    height: auto;
+    margin-right: 10px;
+    margin-top: -3px;
+}
+.imgmobile1, .imgmobile2, .imgmobile3, .imgmobile4, .imgmobile5, .imgmobile6, .fotobodega2{display: none;}
+.box-lista{width: 100%; height: auto;}
+.destacado{
+    width: 30px;
+    position: absolute;
+    right: 16px;
+    top: -7px;
+}
+.destacado img{width: 100%; height: auto;}
+.buscador-activo{
+    width: 400px;
+    position: fixed;
+    height: 100%;
+    box-shadow: 0px 3px 7px rgba(0, 3, 6, 0.36);
+    background-color: #988660;
+    z-index: 9999;
+}
+.buscador-cabecera .cont-arrow{position: absolute; right: 15px; top: 20px;}
+.name-cabecera{position: absolute; right: 10px; bottom: 10px; width: 150px; height: auto;}
+.menu-buscador{width: 100%; height: auto; float: left; padding: 40px 30px;}
+.select-buscador{width: 100%; height: auto; float: left; margin-bottom: 30px; border-bottom: 0.5px solid #fff;}
+.select-buscador img{width: 20px; height: auto; float: left; margin-right: 10px; margin-top: 8px;}
+.select-buscador select{
+    width: calc(100% - 30px); 
+    background-color: transparent; 
+    float: left; 
+    border: 0; 
+    color: #fff; 
+    height: 40px;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    background: url("../img/iconos/arrowb.svg") no-repeat 99% 58% /4%;
+    font-family: 'Montserrat', sans-serif;
+    padding-left: 10px;
+}
+.select-buscador select option{
+	color: #988660;
+}
+.select-buscador select:focus{outline: none;}
+.menu-buscador button{
+    width: 170px; 
+    height: 36px; 
+    background-color: #fff; 
+    border-radius: 18px; 
+    font-family: 'Montserrat', sans-serif; 
+    color: #988660; 
+    font-weight: 300; 
+    font-size: 14px;
+    letter-spacing: 2px;
+    margin: 0px auto;
+    display: block;
+}
+.menu-buscador button img{margin-right: 10px; width: 20px; float: left; margin-left: 28px;}
+.menu-buscador button p{text-align: center; float: left;}
+.menu-buscador button:hover .lupab2, .lupab1{display: block;}
+.menu-buscador button:hover .lupab1, .lupab2{display: none;}
+.menu-buscador button:hover{background-color: #673134; color: #fff;}
+
+@media screen and (max-width: 1200px){
+    .tarjeta-vino{width: 31.33%;}
+    .contimgback1{width: 31%;}
+    .contnimg1, .contnimg3, .contnimg4{margin-top: 6%;}
+    .contnimg2{margin-top: 10%;}
+    .contnimg5{margin-top: 7%;}
+    .contnimg6{margin-top: 2%;}
+}
+@media screen and (max-width: 1093px){
+    .contimgback1{width: 35%;}
+}
+
+@media screen and (max-width: 992px){
+    .presentacion-cliente{font-size: 14px;}
+    .logo img{width: 70%;}
+    .tarjeta-vino{width: 48%;}
+    .foto-vino {width: 160px;}
+    .info-vino {width: calc(100% - 160px);}
+    .foto-vino img{max-height: 247px; float: right;}
+    .backvino {height: 247px; float: right;}
+    .foto-plato{width: 100%;}
+    .info-plato{width: 100%; padding-left: 0px; padding-top: 20px;}
+    .contnimg1, .contnimg4{margin-top: 8%;}
+    .contnimg3{margin-top: 10%;}
+    .contnimg2{margin-top: 10%; width: 60%;}
+    .contnimg5{margin-top: 9%;}
+    .contimgback3 {
+        bottom: 0;
+        height: 93%;
+    }
+    .contimgback6{right: 19%;}
+}
+@media screen and (max-width: 900px){
+    .contnimg1, .contnimg4 {
+        margin-top: 11%;
+    }
+    .contimgback1 {
+        width: 43%;
+        right: 3%;
+    }
+    .contnimg2 {margin-top: 14%;}
+    .contnimg6 {
+        width: 53%;
+        margin-top: 4%;
+        margin-left: 3%;
+    }
+    .contnimg5 {
+        margin-top: 12%;
+    }
+}
+@media screen and (max-width: 880px){
+    .foto-vino {width: 100px;}
+    .info-vino {width: calc(100% - 100px);}
+    .contimgback6{width: 32%;}
+    .foto-bodega-detalle{padding-left: 20px;}
+}
+
+@media screen and (max-width: 770px){
+    .logo-cliente{width: 35%;}
+    .bienvenida{width: 30%;}
+    .presentacion-cliente{max-width: 500px; margin-bottom: 5%;}
+    .logo-carta-digital{width: 15%;}
+    .foto-vino {width: 90px;}
+    .info-vino {width: calc(100% - 90px); padding: 0px 0 5px 10px;}  
+    .tarjeta-vino-detalle{float: left; height: auto; width: 100%; padding: 17px 0;}
+    .foto-bodega-detalle{width: 65%;}
+    .info-vino-detalle{width: 65%; padding-left: 35px;}
+    .foto-vino-detalle{width: 35%;}
+    .modelo-vista2{padding-top: 55px;}
+    .tarjeta-bodega-detalle{width: 100%; float: left; box-shadow: none; background-color: transparent;}
+    .foto-bodega-lugar{border-radius: 0;}
+    .title-plato{font-size: 22px;}
+    .btn-black2 {
+        height: 40px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+    }
+    .contnimg4{width: 65%; margin-top: 13%;}
+    .contnimg1 {
+        margin-top: 15%;
+    }
+    .contnimg2 {
+        margin-top: 17%;
+    }
+    .contnimg5 {
+        margin-top: 16%;
+    }
+    .contimgback3 {
+        height: 85%;
+    }
+    .contnimg3 {
+        margin-top: 18%;
+    }
+    .contnimg6{margin-top: 10%;}
+    .contimgback1 {width: 52%;}
+    .contimgback2 {
+        right: 7px;
+        width: 45%;
+    }
+    .foto-plato img {
+        width: 40%;
+        height: auto;
+        margin: 0px auto;
+        display: block;
+    }
+    .btn-lista{margin-bottom: 15px;}
+}
+
+@media screen and (max-width: 680px){
+    .tarjeta-vino {
+        width: 94%;
+        margin-right: 3%;
+        margin-left: 3%;
+    }
+    .foto-vino {width: 35%;}
+    .info-vino {width: 65%;}
+    .vermas{display: none}
+    #cabecera {height: 10%;}
+    #cuerpo {height: 90%}
+    .cont-botones{height: 24vh;}
+    .publi-bodegas{height: 22vh;}
+    .contnimg1 {
+        margin-top: 24%;
+    }
+    .contnimg2 {
+        margin-top: 26%;
+    }
+    .contnimg4 {
+        margin-top: 21%;
+    }
+    .contnimg5 {
+        margin-top: 22%;
+    }
+    .contnimg6 {
+        margin-top: 15%;
+    }
+    .contimgback6 {
+        width: 40%;
+    }
+    .contnimg3 {
+        margin-top: 27%;
+    }
+    .contimgback2 {
+        width: 55%;
+    }
+    .contimgback1 {
+        width: 61%;
+    }
+}
+
+@media screen and (max-width: 600px){
+    .logo-cliente{margin-bottom: 10%;}
+    .presentacion-cliente{padding: 0 20px;}
+    .nombre-categoria{display: none;} 
+    .foto-bodega-detalle img{display: none}
+    .foto-bodega-detalle, .info-vino-detalle{width: 100%; padding-left: 0px;}
+    .foto-vino-detalle{width: 100%;} 
+    .title-elemento-detalle { 
+        font-size: 22px;
+        margin-bottom: 0;
+        text-align: center;
+    }   
+    .subtitle-elemento-detalle{
+        line-height: 23px;
+        text-align: center;
+        font-size: 17px;
+        color: #673134;
+    }
+    .foto-vino-detalle img {
+        width: 40%;
+        height: auto;
+        float: none;
+        margin: 0px auto;
+        display: block;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .info-elemento-detalle {
+        line-height: 22px;
+        text-align: center;
+        font-size: 14px;
+        font-style: italic;
+    }
+    .datos-detalles {
+        width: 80%;
+        margin-bottom: 8px;
+        background-color: #673134;
+        border-radius: 5px;
+        margin-left: 10%;
+        padding: 5px 10px;
+    }
+    .datos-detalles1{background-color: transparent;}
+    .datos-detalles2 p {
+        line-height: 30px;
+        text-align: left;
+        color: #fff;
+        font-size: 16px;
+    }
+    .contimgback1 {
+        width: 73%;
+    }
+    .contimgback2 {
+        width: 62%;
+    }
+    .contimgback6 {
+        width: 53%;
+        right: 5%;
+    }
+    .contnimg5 {
+        margin-top: 28%;
+    }
+    .contnimg4 {
+        margin-top: 29%;
+    }
+    .contnimg2 {
+        margin-top: 31%;
+    }
+    .contnimg1 {
+        margin-top: 30%;
+    }
+    .contnimg6 {
+        margin-top: 22%;
+    }
+    .contimgback3 {
+        height: 70%; bottom: 17px;
+    }
+    .contimgback4 {
+        top: 19px;
+        width: 66%;
+        height: 81%;
+    }
+    .tarjeta-enologo-detalle{width: 90%; margin-left: 5%;}
+}
+
+@media screen and (max-width: 500px){
+    .logo-cliente{width: 50%; margin-bottom: 14%;}
+    .bienvenida, .logo{width: 40%;}
+    .presentacion-cliente {font-size: 12px; line-height: 25px; margin-bottom: 8%;}
+    .btn-black {width: 150px; font-size: 12px;}
+    .logo-carta-digital{width: 25%;}
+    .presentacion hr {width: 22%; margin-bottom: 30px;}
+    .logo img{width: 85%;}
+    .publi {width: 60%;}
+    .cont-botones{height: 26.5vh;}
+    .publi-marcas {height: 15vh;}
+    .pagination {float: left; font-size: 13px; margin-right: 0px; margin-left: 10px;}
+    .pagination a {padding: 8px 13px;}
+    .tarjeta-vino-detalle{margin-top: 20px;}
+    .descripcion-bodega p, .descripcion-enologo p{line-height: 30px; font-size: 13px;}
+    .tarjeta-enologo-detalle{
+        width: 100%; 
+        float: left;
+        padding: 0 30px;
+        margin-left: 0;
+        background-color: transparent;
+        box-shadow: none;
+    }
+    .enologop2 {
+        line-height: 28px;
+        text-align: left;
+        font-size: 19px;
+    }
+    .enologop {
+        text-align: left;
+        padding-left: 30px;
+    }
+    .foto-enologo {
+        width: 150px;
+        height: 150px;
+        margin-top: 40px;
+    }
+    .seleccion-bodega {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        font-size: 18px;
+        line-height: 35px;
+    }
+    .seleccion-bodega span {font-size: 25px; line-height: 19px;}
+    .lista-bodega {height: 40px;}
+    .lista-bodega p {
+        line-height: 40px;
+        font-size: 15px;
+        letter-spacing: 0;
+        color: #9b8960;
+    }
+    .lista-bodega:hover p{letter-spacing: 0; background-color: #f5f5f5; font-weight: 400;}
+    .cont-nombre{padding: 5px;}
+    .contnimg1, .contnimg2, .contnimg3, .contnimg4, .contnimg5{margin: 0px auto; display: block; width: 75%; margin-top: 6px;}
+    .contnimg6{margin: 0px auto; display: block; width: 58%;}
+    .contimgback1, .contimgback2, .contimgback3, .contimgback4, .contimgback5, .contimgback6{display: none;}
+    .imgmobile1, .imgmobile2, .imgmobile3, .imgmobile4, .imgmobile5, .imgmobile6 {
+        display: block;
+        left:0;
+        position: absolute;
+        bottom: 0;
+    }
+    .imgmobile1 img{
+        width: 56%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+    }
+    .imgmobile2 img, .imgmobile3 img{
+        width: 40%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+        margin-bottom: 5px;
+    }
+    .imgmobile4 img{
+        width: 90%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+        margin-bottom: 13px;
+    }
+    .imgmobile5 img{
+        width: 35%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+        margin-bottom: 7px;
+    }
+    .imgmobile6 img{
+        width: 37%;
+        height: auto;
+        display: block;
+        margin: 0px auto;
+        margin-bottom: 5px;
+    }
+    .modelo-vista{padding-top: 55px;}
+
+    .foto-plato img{width: 100%;}
+    .title-plato{font-size: 20px;}
+    .lista-simplificada h4{font-size: 18px;}
+    .lista-simplificada {
+        width: calc(100% - 40px);
+        float: left;
+        margin: 0 20px 30px 20px;
+    }
+    .buscador-activo{width: 90%;}
+    .cabecera-buscador p{margin-bottom: 40px;}
+}
+
+@media screen and (max-width: 480px){
+    .imgmobile2 img{width: 47%;}
+}
+
+
+@media screen and (max-width: 430px){
+    .foto-vino img {float: none; height: 200px}
+    .backvino {float: none; height: 200px}
+    .box-info-elemento {min-height: 50px; margin-bottom: 10px;}
+    .subtitle-elemento {font-weight: 400; line-height: 17px; color:#9b8960; font-size: 14px;}
+    .precio-elemento {font-size: 20px; width: auto; float: left; padding-top: 12px;}
+    .bodega-tarjeta{float: right;}
+    .tarjeta-vino{padding-bottom: 10px;}
+    .datos-detalles{width: 90%; margin-left: 5%;}
+    .nombre-bodega p {line-height: 40px; font-size: 20px;}
+    .nombre-bodega {
+        width: 290px;
+        height: 40px;
+        padding: 0 15px;
+        margin-top: -20px;
+    }
+    .foto-bodega-lugar{height: 300px;}
+    .imgmobile1 img {width: 65%;}
+    .imgmobile2 img {width: 55%;}
+    .imgmobile3 img {width: 45%; margin-bottom: 7px;}
+    .imgmobile4 img{margin-bottom: 23px;}
+    .contnimg4{width: 89%;}
+    .imgmobile5 img {width: 42%;}
+    .imgmobile6 img {width: 45%;}
+}
+
+@media screen and (max-width: 390px){    
+    .contnimg1, .contnimg2, .contnimg3, .contnimg4, .contnimg5 {
+        width: 84%;
+        margin-top: 11px;
+    }
+    .contnimg6{width: 76%;}
+    .foto-vino {width: 70px;}
+    .backvino{width: 70px;}
+    .info-vino {width: calc(100% - 70px); padding-top: 14px;}
+    .bodega-tarjeta { height: 47px;}
+}
+
+@media screen and (max-width: 360px){
+    .logo-cliente {margin-bottom: 20%; margin-top: 5%; width: 60%;}
+    .tarjeta-vino-detalle{padding: 17px 0;}
+    .imgmobile1 img {width: 81%;}
+    .imgmobile2 img {width: 66%;}
+    .imgmobile3 img {width: 53%; }
+    .imgmobile4 img{margin-bottom: 28px;}
+    .imgmobile5 img {width: 48%;}
+    .imgmobile6 img {width: 51%;}
+    .contnimg4 {
+        width: 99%;
+        margin-top: 13px;
+    }
+    .contnimg6 {
+        width: 82%;
+        margin-top: 5px;
+    }
+    .buscador-cabecera{height: 150px;}
+    .select-buscador{margin-bottom: 20px;}
+}
+
+@media screen and (max-width: 330px){
+    .nombre-bodega p{font-size: 18px;}
+    .imgmobile1, .imgmobile2, .imgmobile3, .imgmobile4, .imgmobile5, .imgmobile6{padding-bottom: 5px;}
+    .precio-elemento {font-size: 17px;}
+}

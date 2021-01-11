@@ -11,10 +11,12 @@ import static com.perrosv22.app.utils.Texts.SAVE_LABEL;
 import static com.perrosv22.app.utils.Texts.URL_LABEL;
 
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,11 +32,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 import com.perrosv22.app.convertidores.PerroConverter;
 import com.perrosv22.app.entidades.Perro;
 import com.perrosv22.app.errores.WebException;
 import com.perrosv22.app.modelos.PerroModel;
 import com.perrosv22.app.servicios.PerroService;
+import com.perrosv22.app.utils.JSONUtils;
 import com.perrosv22.app.utils.Texts;
 
 @Controller
@@ -51,6 +58,7 @@ public class PerroController extends Controlador {
 		super(PERRO_LIST_LABEL, PERRO_FORM_LABEL);
 	}
 
+	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/list")
 	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q) {
 		ModelAndView model = new ModelAndView(listView);
@@ -74,7 +82,7 @@ public class PerroController extends Controlador {
 		return model;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@PostMapping("/save")
 	public String save(HttpSession session, @Valid @ModelAttribute(PERRO_LABEL) PerroModel modelE, BindingResult result,
 			ModelMap model) {
@@ -98,7 +106,7 @@ public class PerroController extends Controlador {
 		return formView;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/recover")
 	public String refrescar(@RequestParam(required = false) String id) {
 
@@ -125,12 +133,34 @@ public class PerroController extends Controlador {
 		}
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public TreeMap<String, Object> getBreeds() {
+
+		HttpResponse<JsonNode> jsonResponse;
+		try {
+			jsonResponse = Unirest.get("https://dog.ceo/api/breeds/list/all")
+					.header("accept", "application/json").asJson();	
+			
+			Object o = jsonResponse.getBody().getObject().get("message");
+
+			TreeMap<String, Object> map = new TreeMap<>(JSONUtils.toMap(new JSONObject(o.toString())));
+	        
+			return map;
+		} catch (UnirestException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/form")
 	public ModelAndView form(@RequestParam(required = false) String id, @RequestParam(required = false) String action) {
 
+		TreeMap<String, Object> razas = getBreeds();
+		
 		ModelAndView model = new ModelAndView(formView);
 
+		model.addObject("razas", razas.keySet());
+		
 		PerroModel modelE = new PerroModel();
 		if (action == null || action.isEmpty()) {
 			action = SAVE_LABEL;
@@ -165,6 +195,7 @@ public class PerroController extends Controlador {
 		return "tabla-perros";
 	}
 
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/baja/{id}")
 	public String baja(@PathVariable String id) {
 
@@ -177,6 +208,7 @@ public class PerroController extends Controlador {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/alta/{id}")
 	public String alta(@PathVariable String id) {
 

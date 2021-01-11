@@ -18,15 +18,9 @@
 					Perros <small>Utilice este m�dulo para gestionar perros.</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li>
-						<a href="#">
-							<i class="fa fa-dashboard"></i>
-							Home
-						</a>
-					</li>
-					<li>
-						<a href="#">PerrAPP</a>
-					</li>
+					<li><a href="#"> <i class="fa fa-dashboard"></i> Home
+					</a></li>
+					<li><a href="#">PerrAPP</a></li>
 					<li class="active">Perros</li>
 				</ol>
 			</section>
@@ -36,7 +30,7 @@
 
 				<!-- Default box -->
 				<div class="box">
-				    <div class="box-header with-border">
+					<div class="box-header with-border">
 						<h3 class="box-title" style="margin-top: 10px;">Cargar Perro</h3>
 					</div>
 					<div class="box-body">
@@ -53,19 +47,39 @@
 							<strong>�Alto!</strong> �Se encuentra seguro de que desea proceder con la recuperación del perro?
 						</div>
 
-						<form class="vertical-form" id="formulario" method="POST" th:action="@{/perro/} + ${action == null or action == 'update' ? 'save' : action}" th:object="${perro}" >
+						<form class="vertical-form" id="formulario" method="POST"
+							th:action="@{/perro/} + ${action == null or action == 'update' ? 'save' : action}" th:object="${perro}">
 
 							<input type="hidden" class="form-control" th:field="*{id}" th:value="*{id}" />
-							
+
 							<div class="form-group">
-								<label for="name">Nombre</label>
-								<input type="text" class="form-control" id="name" placeholder="Ingrese el nombre del Perro" th:field="*{nombre}" th:value="*{nombre}" th:disabled="${action == 'delete'}" />
+								<label for="name">Nombre</label> <input type="text" class="form-control" id="name"
+									placeholder="Ingrese el nombre del Perro" th:field="*{nombre}" th:value="*{nombre}" th:disabled="${action == 'delete'}" />
 							</div>
 
-							
 							<div class="form-group">
-								<input type="date" th:if= "${perro.creado != null}" th:field="*{creado}"  style="display:none;"/>
-								<input type="date" th:if= "${perro.editado != null}" th:field="*{editado}"  style="display:none;"/>
+								<label for="name">Apodo</label> <input type="text" class="form-control" id="apodo"
+									placeholder="Ingrese el apodo del Perro" th:field="*{apodo}" th:value="*{apodo}" th:disabled="${action == 'delete'}" />
+							</div>
+
+							<div class="form-group">
+								<label for="name">URL Foto</label> <input type="text" class="form-control" id="foto"
+									placeholder="Ingrese la URL de la foto" th:field="*{foto}" th:value="*{foto}" th:disabled="${action == 'delete'}" />
+							</div>
+
+							<div class="form-group">
+								<label for="name">Raza</label> 
+								
+								<select class="form-control" th:field="*{raza}">
+									<option th:each="i : ${razas}" th:value="${i}" th:text="${i}"></option>
+								</select> 
+
+							</div>
+
+							<div class="form-group">
+								<input type="date" th:if="${perro.creado != null}" th:field="*{creado}" style="display: none;" /> <input type="date"
+									th:if="${perro.editado != null}" th:field="*{editado}" style="display: none;" /> <input type="date"
+									th:if="${perro.activo}" th:field="*{activo}" style="display: none;" />
 							</div>
 
 
@@ -85,6 +99,6 @@
 		</div>
 		<div th:replace="dashboard/fragments/footer :: footer">...</div>
 	</div>
-		
-	</body>
+
+</body>
 </html>

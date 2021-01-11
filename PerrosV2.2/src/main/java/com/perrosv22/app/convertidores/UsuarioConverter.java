@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import com.perrosv22.app.entidades.Usuario;
@@ -51,6 +52,10 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 
 			if (model.getNacimientoString()!=null) {
 				entity.setNacimiento(Fecha.parseFecha(model.getNacimientoString()));
+			}
+			
+			if (model.getId()==null || model.getId().isEmpty()) {
+				entity.setClave(new BCryptPasswordEncoder().encode(entity.getClave()));
 			}
 			
 		} catch (Exception e) {

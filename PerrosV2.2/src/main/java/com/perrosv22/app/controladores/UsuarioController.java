@@ -10,8 +10,6 @@ import static com.perrosv22.app.utils.Texts.USUARIO_FORM_LABEL;
 import static com.perrosv22.app.utils.Texts.USUARIO_LABEL;
 import static com.perrosv22.app.utils.Texts.USUARIO_LIST_LABEL;
 
-import java.util.List;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -54,7 +52,7 @@ public class UsuarioController extends Controlador {
 	@GetMapping("/list")
 	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q) {
 		ModelAndView model = new ModelAndView(listView);
-
+		
 		Page<Usuario> page;
 
 		if (q == null || q.isEmpty()) {
@@ -74,7 +72,7 @@ public class UsuarioController extends Controlador {
 		return model;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@PostMapping("/save")
 	public String save(HttpSession session, @Valid @ModelAttribute(USUARIO_LABEL) UsuarioModel modelE, BindingResult result,
 			ModelMap model) {
@@ -98,7 +96,7 @@ public class UsuarioController extends Controlador {
 		return formView;
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/recover")
 	public String refrescar(@RequestParam(required = false) String id) {
 
@@ -110,7 +108,7 @@ public class UsuarioController extends Controlador {
 		return "redirect:/usuario/list";
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@PostMapping("/delete")
 	public String delete(@ModelAttribute(USUARIO_LABEL) UsuarioModel modelE, ModelMap model) {
 		log.info("METHOD: usuario.delete() -- PARAMETROS: " + modelE);
@@ -125,9 +123,9 @@ public class UsuarioController extends Controlador {
 		}
 	}
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/form")
-	public ModelAndView form(@RequestParam(required = false) String id, @RequestParam(required = false) String action) {
+	public ModelAndView form(HttpSession session, @RequestParam(required = false) String id, @RequestParam(required = false) String action) {
 
 		ModelAndView model = new ModelAndView(formView);
 
@@ -155,16 +153,7 @@ public class UsuarioController extends Controlador {
 
 	}
 
-	@GetMapping("/lista")
-	public String lista(ModelMap modelo) {
-
-		List<Usuario> todos = usuarioService.listarTodos();
-
-		modelo.addAttribute("usuarios", todos);
-
-		return "list-usuario";
-	}
-
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/baja/{id}")
 	public String baja(@PathVariable String id) {
 
@@ -177,6 +166,7 @@ public class UsuarioController extends Controlador {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/alta/{id}")
 	public String alta(@PathVariable String id) {
 

@@ -57,6 +57,7 @@
 						<div class="card">
 
 							<div class="card-block" style="overflow-x: auto;">
+							
 								<table class="table table-striped table-sm">
 									<thead class="thead-inverse">
 										<tr>
@@ -71,7 +72,7 @@
 											<th th:if="${url eq '/usuario/papelera' or url eq '/usuario/auditoria'}">Creado</th>
 											<th th:if="${url eq '/usuario/papelera' or url eq '/usuario/auditoria'}">Editado</th>
 											<th th:if="${url eq '/usuario/papelera' or url eq '/usuario/auditoria'}">Activo</th>
-											<th th:if="${#authorization.expression('hasRole(''ADMIN'')')}" style="text-align: right;">Actions</th>
+											<th th:if="${#authorization.expression('hasRole(''SUPERADMIN'')')}" style="text-align: right;">Actions</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -91,12 +92,15 @@
 												th:text="${object.editado} ? ${#dates.format(object.editado, 'dd-MM-yyyy HH:mm')}">Editado</td>
 											<td th:if="${url eq '/usuario/papelera' or url eq '/usuario/auditoria'}"
 												th:text="${object.activo} ? ${#dates.format(object.activo, 'dd-MM-yyyy HH:mm')}">Activo</td>
-											<td th:if="${#authorization.expression('hasRole(''ADMIN'')')}" style="text-align: right;">
-												<a th:if="${url eq '/user/list'}" th:href="@{/user/form(action=update,id=__${object.id}__)}" class="icono_action fa fa-pencil-alt"></a>
-												<a th:if="${url eq '/user/list' && object.active}" th:href="@{/user/recover/__${object.id}__}"
-												class="icono_action fa fa-trash"></a> <a th:if="${url eq '/user/list' && !object.active}"
-												th:href="@{/user/recover/__${object.id}__}" class="icono_action fa fa-undo"></a>
+												
+											<td th:if="${#authorization.expression('hasRole(''SUPERADMIN'')') && session.user.email != object.email && object.rol != T(com.perrosv22.app.enums.Rol).SUPERADMIN  }" style="text-align: right;">
+												<a th:if="${url eq '/usuario/list' }" th:href="@{/usuario/form(action=update,id=__${object.id}__)}" class="icono_action fa fa-pencil-alt"></a>
+												<a th:if="${url eq '/usuario/list' }" th:href="@{/usuario/form(action=delete,id=__${object.id}__)}" class="icono_action fa fa-trash"></a> 
+												<a th:if="${url eq '/usuario/list' && object.activo != null && object.activo }" th:href="@{/usuario/baja/__${object.id}__}" class="fa fa-level-down-alt"></a>
+												<a th:if="${url eq '/usuario/list' && object.activo != null && !object.activo }" th:href="@{/usuario/alta/__${object.id}__}" class="icono_action fa fa-undo"></a>
+											
 											</td>
+	
 										</tr>
 									</tbody>
 								</table>

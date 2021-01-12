@@ -11,7 +11,6 @@ import com.perrosv22.app.entidades.Perro;
 import com.perrosv22.app.entidades.Usuario;
 import com.perrosv22.app.errores.WebException;
 import com.perrosv22.app.modelos.PerroModel;
-import com.perrosv22.app.modelos.UsuarioModel;
 import com.perrosv22.app.repositorios.PerroRepository;
 import com.perrosv22.app.repositorios.UsuarioRepository;
 
@@ -29,13 +28,12 @@ public class PerroConverter extends Converter<PerroModel, Perro> {
 		PerroModel model = new PerroModel();
 		try {
 
-			UsuarioModel modelUser = null;
+			
 			if (entity.getUsuario() != null) {
-				modelUser = usuarioConverter.entityToModel(usuarioRepository.getOne(entity.getUsuario().getId()));
+				model.setIdUsuario(entity.getUsuario().getId());
+				model.setUsuario(usuarioConverter.entityToModel(usuarioRepository.getOne(entity.getUsuario().getId())));
 			}
 
-			model.setUsuario(modelUser);
-			
 			BeanUtils.copyProperties(entity, model);
 
 		} catch (Exception e) {
@@ -58,8 +56,8 @@ public class PerroConverter extends Converter<PerroModel, Perro> {
 		try {
 
 			Usuario entityUser = null;
-			if (model.getUsuario() != null) {
-				entityUser = usuarioConverter.modelToEntity(model.getUsuario());
+			if (model.getIdUsuario() != null) {
+				entityUser = usuarioRepository.getOne(model.getIdUsuario());
 			}
 
 			entity.setUsuario(entityUser);

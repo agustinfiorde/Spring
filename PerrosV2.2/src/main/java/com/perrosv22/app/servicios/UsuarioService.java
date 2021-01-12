@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -94,6 +96,11 @@ public class UsuarioService implements UserDetailsService {
 	public Usuario getOne(String id) {
 		return usuarioRepository.getOne(id);
 	}
+	
+	public Usuario getUserByLogin() {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		return usuarioRepository.buscarPorEmail(auth.getName());
+	}
 
 	public void validar(UsuarioModel m) throws WebException {
 
@@ -113,7 +120,7 @@ public class UsuarioService implements UserDetailsService {
 			throw new WebException("El Usuario tiene que tener un rol valido");
 		}
 
-		if (m.getNacimientoString() == null || m.getNacimientoString().equals("")) {
+		if (m.getNacimiento() == null ) {
 			throw new WebException("El Usuario tiene que tener una fecha de nacimiento");
 		}
 
@@ -164,7 +171,7 @@ public class UsuarioService implements UserDetailsService {
 			permissions.add(p);
 			ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 			HttpSession session = attr.getRequest().getSession(true);
-			session.setAttribute("usuario", user);
+			session.setAttribute("user", user);
 			return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getClave(),
 					permissions);
 		}

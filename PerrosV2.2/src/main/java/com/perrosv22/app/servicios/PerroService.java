@@ -22,6 +22,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
 public class PerroService {
 
+	private final UsuarioService usuarioService;
 	private final PerroRepository perroRepository;
 	private final PerroConverter perroConverter;
 
@@ -30,6 +31,10 @@ public class PerroService {
 		validar(m);
 
 		Perro entidad = perroConverter.modelToEntity(m);
+		
+		if (entidad.getUsuario()==null) {
+			entidad.setUsuario(usuarioService.getUserByLogin());
+		}
 
 		if (entidad.getCreado() != null) {
 			entidad.setEditado(new Date());
@@ -61,6 +66,10 @@ public class PerroService {
 	public List<Perro> listarTodos() {
 		return perroRepository.findAll();
 	}
+	
+	public Page<Perro> listarTodos(Pageable paginable) {
+		return perroRepository.searchAll(paginable);
+	}
 
 	public List<Perro> listarActivos() {
 		return perroRepository.searchAssets();
@@ -70,10 +79,18 @@ public class PerroService {
 		return perroRepository.searchAssets(paginable);
 	}
 
+	public Page<Perro> buscarActivosPorParametro(Pageable paginable, String q) {
+		return perroRepository.searchAssetsByParam(paginable, q);
+	}
+	
 	public Page<Perro> buscarPorParametro(Pageable paginable, String q) {
 		return perroRepository.searchByParam(paginable, q);
 	}
 
+	public List<Perro> buscarActivosPorParametro(String q) {
+		return perroRepository.searchAssetsByParam(q);
+	}
+	
 	public List<Perro> buscarPorParametro(String q) {
 		return perroRepository.searchByParam(q);
 	}

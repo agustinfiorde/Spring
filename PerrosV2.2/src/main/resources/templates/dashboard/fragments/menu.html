@@ -4,14 +4,19 @@
 </head>
 <body>
 
+
 	<aside class="main-sidebar" th:fragment="menu">
+	
 		<!-- sidebar: style can be found in sidebar.less -->
 		<section class="sidebar">
+		
 			<!-- Sidebar user panel -->
 			<div class="user-panel" style="display: block;">
+			
 				<div class="pull-left image">
-					<img src="/backend/img/avatar.png" class="img-circle" alt="User Image" />
+					<img src="/img/profile.png" class="img-circle" alt="User Image" />
 				</div>
+				
 				<div class="pull-left info">
 					<p th:text="${session.user != null ? (session.user.nombre  + ' ' + session.user.apellido): '' }"></p>
 					<a href="#"> <i class="fa fa-circle text-success"></i> Online
@@ -21,17 +26,13 @@
 
 			<!-- sidebar menu: : style can be found in sidebar.less -->
 			<ul class="sidebar-menu" data-widget="tree">
-				<li style="text-align: center; vertical-align: middle; margin-top: 15px;"
-					th:text="${session.usuario != null ? (session.usuario.nombre  + ' ' + session.usuario.apellido ): '' }"></li>
+				<li>
+					<a th:href="@{/usuario/list}"> <i class="fas fa-users"></i><span>Usuarios</span></a>
+				</li>
 
-				<hr style="margin-top: 10px; margin-bottom: 5px;" />
-
-				<li ><a th:href="@{/usuario/list}"> <i class="fas fa-users"></i> <span>Usuarios</span>
-				</a></li>
-				
-				<li ><a th:href="@{/perro/list}"> <i class="fa fa-dog"></i> <span>Perros</span>
-				</a></li>
-
+				<li>
+					<a th:href="@{/perro/list}"> <i class="fa fa-dog"></i> <span>Perros</span></a>
+				</li>
 			</ul>
 		</section>
 	</aside>

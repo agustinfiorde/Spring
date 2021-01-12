@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -60,24 +61,74 @@ public class PerroController extends Controlador {
 
 	@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/list")
-	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q) {
+	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q)
+			throws WebException {
 		ModelAndView model = new ModelAndView(listView);
 
 		Page<Perro> page;
+		Page<PerroModel> pageModel;
 
-		if (q == null || q.isEmpty()) {
-			page = perroService.listarActivos(paginable);
+		if (isAdmin()) {
+
+			if (q == null || q.isEmpty()) {
+				page = perroService.listarActivos(paginable);
+			} else {
+				page = perroService.buscarActivosPorParametro(paginable, q);
+				model.addObject(Texts.QUERY_LABEL, q);
+			}
+
+			pageModel = new PageImpl<>(perroConverter.entitiesToModels(page.getContent()));
+
+			model.addObject(PAGE_LABEL, pageModel);
+
+			log.info("METHOD: perro.toList() -- PARAMS: " + paginable);
+
+			model.addObject(URL_LABEL, "/perro/list");
+			return model;
+
 		} else {
-			page = perroService.buscarPorParametro(paginable, q);
-			model.addObject(Texts.QUERY_LABEL, q);
+
+			if (q == null || q.isEmpty()) {
+				page = perroService.listarTodos(paginable);
+			} else {
+				page = perroService.buscarPorParametro(paginable, q);
+				model.addObject(Texts.QUERY_LABEL, q);
+			}
+
+			pageModel = new PageImpl<>(perroConverter.entitiesToModels(page.getContent()));
+
+			model.addObject(PAGE_LABEL, pageModel);
+
+			log.info("METHOD: perro.toList() -- PARAMS: " + paginable);
+
+			model.addObject(URL_LABEL, "/perro/list");
+			return model;
+		}
+	}
+
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+	@GetMapping("/form")
+	public ModelAndView form(@RequestParam(required = false) String id, @RequestParam(required = false) String action) {
+
+		TreeMap<String, Object> razas = getBreeds();
+
+		ModelAndView model = new ModelAndView(formView);
+
+		model.addObject("razas", razas.keySet());
+
+		PerroModel modelE = new PerroModel();
+		if (action == null || action.isEmpty()) {
+			action = SAVE_LABEL;
 		}
 
-		model.addObject(PAGE_LABEL, page);
+		try {
+			if (id != null)
+				modelE = perroConverter.entityToModel(perroService.getOne(id));
+		} catch (WebException e) {
+			e.printStackTrace();
+		}
 
-		log.info("METHOD: perro.toList() -- PARAMS: " + paginable);
-
-		model.addObject(URL_LABEL, "/perro/list");
-		model.addObject(PERRO_LABEL, new PerroModel());
+		loadModel(model.getModelMap(), modelE, action);
 
 		return model;
 	}
@@ -107,15 +158,25 @@ public class PerroController extends Controlador {
 	}
 
 	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/recover")
-	public String refrescar(@RequestParam(required = false) String id) {
+	@GetMapping("/baja/{id}")
+	public String baja(@PathVariable String id) {
+		try {
+			perroService.baja(id);
+			return "redirect:/perro/list";
+		} catch (Exception e) {
+			return "redirect:/";
+		}
+	}
 
+	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
+	@GetMapping("/alta/{id}")
+	public String alta(@PathVariable String id) {
 		try {
 			perroService.alta(id);
+			return "redirect:/perro/list";
 		} catch (Exception e) {
-			e.printStackTrace();
+			return "redirect:/";
 		}
-		return "redirect:/perro/list";
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -123,7 +184,6 @@ public class PerroController extends Controlador {
 	public String delete(@ModelAttribute(PERRO_LABEL) PerroModel modelE, ModelMap model) {
 		log.info("METHOD: perro.delete() -- PARAMETROS: " + modelE);
 		model.addAttribute(ACTION_LABEL, "delete");
-
 		try {
 			perroService.eliminar(modelE.getId());
 			return "redirect:/perro/list";
@@ -137,45 +197,16 @@ public class PerroController extends Controlador {
 
 		HttpResponse<JsonNode> jsonResponse;
 		try {
-			jsonResponse = Unirest.get("https://dog.ceo/api/breeds/list/all")
-					.header("accept", "application/json").asJson();	
-			
-			Object o = jsonResponse.getBody().getObject().get("message");
+			jsonResponse = Unirest.get("https://dog.ceo/api/breeds/list/all").header("accept", "application/json")
+					.asJson();
 
+			Object o = jsonResponse.getBody().getObject().get("message");
 			TreeMap<String, Object> map = new TreeMap<>(JSONUtils.toMap(new JSONObject(o.toString())));
-	        
 			return map;
 		} catch (UnirestException e) {
 			e.printStackTrace();
 			return null;
 		}
-	}
-
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/form")
-	public ModelAndView form(@RequestParam(required = false) String id, @RequestParam(required = false) String action) {
-
-		TreeMap<String, Object> razas = getBreeds();
-		
-		ModelAndView model = new ModelAndView(formView);
-
-		model.addObject("razas", razas.keySet());
-		
-		PerroModel modelE = new PerroModel();
-		if (action == null || action.isEmpty()) {
-			action = SAVE_LABEL;
-		}
-
-		try {
-			if (id != null)
-				modelE = perroConverter.entityToModel(perroService.getOne(id));
-		} catch (WebException e) {
-			e.printStackTrace();
-		}
-
-		loadModel(model.getModelMap(), modelE, action);
-
-		return model;
 	}
 
 	private void loadModel(ModelMap modelo, PerroModel modelE, String action) {
@@ -193,31 +224,6 @@ public class PerroController extends Controlador {
 		modelo.addAttribute("perros", todos);
 
 		return "tabla-perros";
-	}
-
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/baja/{id}")
-	public String baja(@PathVariable String id) {
-
-		try {
-			perroService.baja(id);
-			return "redirect:/perro/lista";
-		} catch (Exception e) {
-			return "redirect:/";
-		}
-
-	}
-
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/alta/{id}")
-	public String alta(@PathVariable String id) {
-
-		try {
-			perroService.alta(id);
-			return "redirect:/perro/lista";
-		} catch (Exception e) {
-			return "redirect:/";
-		}
 	}
 
 }

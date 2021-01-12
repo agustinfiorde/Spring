@@ -51,7 +51,7 @@
 							th:action="@{/perro/} + ${action == null or action == 'update' ? 'save' : action}" th:object="${perro}">
 
 							<input type="hidden" class="form-control" th:field="*{id}" th:value="*{id}" />
-
+							
 							<div class="form-group">
 								<label for="name">Nombre</label> <input type="text" class="form-control" id="name"
 									placeholder="Ingrese el nombre del Perro" th:field="*{nombre}" th:value="*{nombre}" th:disabled="${action == 'delete'}" />
@@ -77,9 +77,10 @@
 							</div>
 
 							<div class="form-group">
-								<input type="date" th:if="${perro.creado != null}" th:field="*{creado}" style="display: none;" /> <input type="date"
-									th:if="${perro.editado != null}" th:field="*{editado}" style="display: none;" /> <input type="date"
-									th:if="${perro.activo}" th:field="*{activo}" style="display: none;" />
+								<input type="text" th:if="${perro.usuario != null}" th:field="*{idUsuario}" th:value="*{idUsuario}" style="display: none;" />
+								<input type="datetime" th:if="${perro.creado != null}" th:field="*{creado}" th:value="*{creado}" style="display: none;" /> 
+								<input type="datetime" th:if="${perro.editado != null}" th:field="*{editado}" th:value="*{editado}" style="display: none;" /> 
+								<input th:if="${perro.activo}" th:field="*{activo}" th:value="*{activo}" style="display: none;" />
 							</div>
 
 

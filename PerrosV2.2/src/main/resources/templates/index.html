@@ -49,6 +49,11 @@
 					<a th:href="@{/perro/tabla}" class="btn btn-primary my-2">Tabla de Perros</a>
 					<a th:href="@{/registro}" class="btn btn-danger my-2">Registrarse</a>
 				</p>
+				<p>
+					<a th:href="@{/login}" class="btn btn-success my-2">Login</a>
+					
+				</p>
+					
 			</div>
 		</div>
 	</section>
@@ -60,7 +65,7 @@
 
 				<div class="col" th:each="perro : ${perros}">
 					<div class="card shadow-sm">
-						<img class="bd-placeholder-img card-img-top img-thumbnail" th:src="${perro.foto}">
+						<img class="bd-placeholder-img card-img-top img-thumbnail" th:src="${perro.foto}" style="width: auto; height: auto; max-width: 100%; ">
 						<div class="card-body">
 							<p class="card-text" th:text="${perro.nombre} + ' es un '+ ${perro.raza} + ' cuyo apodo es '+  ${perro.apodo}"></p>
 							<div class="d-flex justify-content-between align-items-center">

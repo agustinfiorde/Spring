@@ -12,7 +12,6 @@ import com.perrosv22.app.entidades.Usuario;
 import com.perrosv22.app.errores.WebException;
 import com.perrosv22.app.modelos.UsuarioModel;
 import com.perrosv22.app.repositorios.UsuarioRepository;
-import com.perrosv22.app.utils.Fecha;
 
 import lombok.RequiredArgsConstructor;
 
@@ -48,11 +47,6 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 		try {
 			
 			BeanUtils.copyProperties(model, entity);
-
-
-			if (model.getNacimientoString()!=null) {
-				entity.setNacimiento(Fecha.parseFecha(model.getNacimientoString()));
-			}
 			
 			if (model.getId()==null || model.getId().isEmpty()) {
 				entity.setClave(new BCryptPasswordEncoder().encode(entity.getClave()));

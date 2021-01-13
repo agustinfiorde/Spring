@@ -45,7 +45,7 @@
 				<div class="navbar-custom-menu">
 
 					<div style="margin-top: 15px; margin-right: 5px;">
-						<a th:href="@{/user/profile}" style="color:white; margin-right: 5px;">
+						<a th:href="@{/usuario/form(action=update,id=__${session.user.id}__)}" style="color:white; margin-right: 5px;">
 							<i class="fa fa-user-cog"></i>
 							<span>Settings</span>
 						</a>

@@ -41,6 +41,7 @@ public class UsuarioService implements UserDetailsService {
 	public Usuario guardar(UsuarioModel m) throws WebException {
 
 		validar(m);
+		
 		Usuario entidad = usuarioConverter.modelToEntity(m);
 
 		if (entidad.getCreado() != null) {
@@ -72,6 +73,10 @@ public class UsuarioService implements UserDetailsService {
 	public List<Usuario> listarTodos() {
 		return usuarioRepository.findAll();
 	}
+	
+	public Page<Usuario> listarTodos(Pageable paginable) {
+		return usuarioRepository.searchAll(paginable);
+	}
 
 	public List<Usuario> listarActivos() {
 		return usuarioRepository.searchAssets();
@@ -81,12 +86,16 @@ public class UsuarioService implements UserDetailsService {
 		return usuarioRepository.searchAssets(paginable);
 	}
 
+	public Page<Usuario> buscarActivosPorParametro(Pageable paginable, String q) {
+		return usuarioRepository.searchAssetsByParam(paginable, q);
+	}
+	
 	public Page<Usuario> buscarPorParametro(Pageable paginable, String q) {
 		return usuarioRepository.searchByParam(paginable, q);
 	}
 
-	public List<Usuario> buscarPorParametro(String q) {
-		return usuarioRepository.searchByParam(q);
+	public List<Usuario> buscarActivosPorParametro(String q) {
+		return usuarioRepository.searchAssetsByParam(q);
 	}
 
 	public Optional<Usuario> buscarPorId(String id) {
@@ -128,12 +137,22 @@ public class UsuarioService implements UserDetailsService {
 			throw new WebException("El Usuario tiene que tener un email");
 		}
 
-		if (usuarioRepository.buscarPorEmail(m.getEmail()) != null) {
-			throw new WebException("El email ya esta en uso");
-		}
-
-		if (m.getClave() == null || m.getClave().isEmpty() || m.getClave().length() < 6 || m.getClave().length() > 12) {
-			throw new WebException("La clave tiene que ser distinta a nada y tiene que tener entre 6 y 12 caracteres");
+		Usuario usuario = usuarioRepository.buscarPorEmail(m.getEmail());
+		
+		if (m.getId()!=null) {
+			
+			if (usuario != null && !usuario.getId().equals(m.getId())) {
+				throw new WebException("El email ya esta en uso");
+			}
+		}else {
+			
+			if (m.getClave() == null || m.getClave().isEmpty() || m.getClave().length() < 6 || m.getClave().length() > 12) {
+				throw new WebException("La clave tiene que ser distinta a nada y tiene que tener entre 6 y 12 caracteres");
+			}
+			
+			if (usuario != null ) {
+				throw new WebException("El email ya esta en uso");
+			}
 		}
 	}
 

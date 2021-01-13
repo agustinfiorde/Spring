@@ -15,6 +15,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,7 @@ import com.perrosv22.app.utils.Texts;
 
 @Controller
 @RequestMapping("/usuario")
+@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_SUPERADMIN')")
 public class UsuarioController extends Controlador {
 
 	@Autowired
@@ -50,32 +52,64 @@ public class UsuarioController extends Controlador {
 	}
 
 	@GetMapping("/list")
-	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q) {
+	public ModelAndView toList(HttpSession session, Pageable paginable, @RequestParam(required = false) String q)
+			throws WebException {
 		ModelAndView model = new ModelAndView(listView);
-		
+
 		Page<Usuario> page;
+		Page<UsuarioModel> pageModel;
 
-		if (q == null || q.isEmpty()) {
-			page = usuarioService.listarActivos(paginable);
+		if (isAdmin()) {
+			if (q == null || q.isEmpty()) {
+				page = usuarioService.listarActivos(paginable);
+			} else {
+				page = usuarioService.buscarActivosPorParametro(paginable, q);
+				model.addObject(Texts.QUERY_LABEL, q);
+			}
+			pageModel = new PageImpl<>(usuarioConverter.entitiesToModels(page.getContent()));
+
+			model.addObject(PAGE_LABEL, pageModel);
+			log.info("METHOD: usuario.toList() -- PARAMS: " + paginable);
+			model.addObject(URL_LABEL, "/usuario/list");
+			model.addObject(USUARIO_LABEL, new UsuarioModel());
+			return model;
 		} else {
-			page = usuarioService.buscarPorParametro(paginable, q);
-			model.addObject(Texts.QUERY_LABEL, q);
+			if (q == null || q.isEmpty()) {
+				page = usuarioService.listarTodos(paginable);
+			} else {
+				page = usuarioService.buscarPorParametro(paginable, q);
+				model.addObject(Texts.QUERY_LABEL, q);
+			}
+			pageModel = new PageImpl<>(usuarioConverter.entitiesToModels(page.getContent()));
+			model.addObject(PAGE_LABEL, pageModel);
+			log.info("METHOD: usuario.toList() -- PARAMS: " + paginable);
+			model.addObject(URL_LABEL, "/usuario/list");
+			return model;
 		}
+	}
 
-		model.addObject(PAGE_LABEL, page);
+	@GetMapping("/form")
+	public ModelAndView form(HttpSession session, @RequestParam(required = false) String id,
+			@RequestParam(required = false) String action) {
 
-		log.info("METHOD: usuario.toList() -- PARAMS: " + paginable);
-
-		model.addObject(URL_LABEL, "/usuario/list");
-		model.addObject(USUARIO_LABEL, new UsuarioModel());
-
+		ModelAndView model = new ModelAndView(formView);
+		UsuarioModel modelE = new UsuarioModel();
+		if (action == null || action.isEmpty()) {
+			action = SAVE_LABEL;
+		}
+		try {
+			if (id != null)
+				modelE = usuarioConverter.entityToModel(usuarioService.getOne(id));
+		} catch (WebException e) {
+			e.printStackTrace();
+		}
+		loadModel(model.getModelMap(), modelE, action);
 		return model;
 	}
 
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@PostMapping("/save")
-	public String save(HttpSession session, @Valid @ModelAttribute(USUARIO_LABEL) UsuarioModel modelE, BindingResult result,
-			ModelMap model) {
+	public String save(HttpSession session, @Valid @ModelAttribute(USUARIO_LABEL) UsuarioModel modelE,
+			BindingResult result, ModelMap model) {
 		log.info("METHOD: usuario.save -- PARAMETROS: " + modelE);
 
 		try {
@@ -97,18 +131,6 @@ public class UsuarioController extends Controlador {
 	}
 
 	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/recover")
-	public String refrescar(@RequestParam(required = false) String id) {
-
-		try {
-			usuarioService.alta(id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "redirect:/usuario/list";
-	}
-
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@PostMapping("/delete")
 	public String delete(@ModelAttribute(USUARIO_LABEL) UsuarioModel modelE, ModelMap model) {
 		log.info("METHOD: usuario.delete() -- PARAMETROS: " + modelE);
@@ -124,58 +146,30 @@ public class UsuarioController extends Controlador {
 	}
 
 	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
-	@GetMapping("/form")
-	public ModelAndView form(HttpSession session, @RequestParam(required = false) String id, @RequestParam(required = false) String action) {
-
-		ModelAndView model = new ModelAndView(formView);
-
-		UsuarioModel modelE = new UsuarioModel();
-		if (action == null || action.isEmpty()) {
-			action = SAVE_LABEL;
-		}
-
-		try {
-			if (id != null)
-				modelE = usuarioConverter.entityToModel(usuarioService.getOne(id));
-		} catch (WebException e) {
-			e.printStackTrace();
-		}
-
-		loadModel(model.getModelMap(), modelE, action);
-
-		return model;
-	}
-
-	private void loadModel(ModelMap modelo, UsuarioModel modelE, String action) {
-
-		modelo.addAttribute(USUARIO_LABEL, modelE);
-		modelo.addAttribute(ACTION_LABEL, action);
-
-	}
-
-	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/baja/{id}")
 	public String baja(@PathVariable String id) {
-
 		try {
 			usuarioService.baja(id);
-			return "redirect:/usuario/lista";
+			return "redirect:/usuario/list";
 		} catch (Exception e) {
 			return "redirect:/";
 		}
-
 	}
 
 	@PreAuthorize("hasRole('ROLE_SUPERADMIN')")
 	@GetMapping("/alta/{id}")
 	public String alta(@PathVariable String id) {
-
 		try {
 			usuarioService.alta(id);
-			return "redirect:/usuario/lista";
+			return "redirect:/usuario/list";
 		} catch (Exception e) {
 			return "redirect:/";
 		}
+	}
+
+	private void loadModel(ModelMap modelo, UsuarioModel modelE, String action) {
+		modelo.addAttribute(USUARIO_LABEL, modelE);
+		modelo.addAttribute(ACTION_LABEL, action);
 	}
 
 }

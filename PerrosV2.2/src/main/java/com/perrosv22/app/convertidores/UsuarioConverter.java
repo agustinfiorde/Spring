@@ -30,16 +30,17 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 		} catch (Exception e) {
 			throw new WebException("Error al convertir la entidad " + entity.toString() + " a modelo");
 		}
-
 		return model;
 	}
 
 	public Usuario modelToEntity(UsuarioModel model) throws WebException {
 
 		Usuario entity;
-
+		String clave = null;
+		
 		if (model.getId() != null && !model.getId().isEmpty()) {
 			entity = usuarioRepository.getOne(model.getId());
+			clave = entity.getClave();
 		} else {
 			entity = new Usuario();
 		}
@@ -49,6 +50,12 @@ public class UsuarioConverter extends Converter<UsuarioModel, Usuario> {
 			BeanUtils.copyProperties(model, entity);
 			
 			if (model.getId()==null || model.getId().isEmpty()) {
+				entity.setClave(new BCryptPasswordEncoder().encode(entity.getClave()));
+			}
+			
+			if ( model.getClave().isEmpty() && !clave.isEmpty()) {
+				entity.setClave(clave);
+			}else {
 				entity.setClave(new BCryptPasswordEncoder().encode(entity.getClave()));
 			}
 			

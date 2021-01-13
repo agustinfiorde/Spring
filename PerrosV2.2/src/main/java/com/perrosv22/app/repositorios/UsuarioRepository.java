@@ -14,8 +14,11 @@ import com.perrosv22.app.entidades.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
-	@Query("SELECT a from Usuario a WHERE a.email LIKE :email AND a.activo = true")
+	@Query("SELECT a from Usuario a WHERE a.email LIKE :email")
 	public Usuario buscarPorEmail(@Param("email") String email);
+	
+	@Query("SELECT a from Usuario a ORDER BY a.nombre")
+	public Page<Usuario> searchAll(Pageable pageable);
 	
 	@Query("SELECT a from Usuario a WHERE a.activo = true ORDER BY a.nombre")
 	public List<Usuario> searchAssets();
@@ -28,5 +31,11 @@ public interface UsuarioRepository extends JpaRepository<Usuario, String> {
 
 	@Query("SELECT a from Usuario a WHERE a.activo = true AND a.nombre LIKE :q OR a.apellido LIKE :q OR a.dni LIKE :q OR a.rol LIKE :q ORDER BY a.apellido DESC")
 	public List<Usuario> searchByParam(@Param("q") String q);
+	
+	@Query("SELECT a from Usuario a WHERE a.nombre LIKE :q OR a.apellido LIKE :q OR a.dni LIKE :q OR a.rol LIKE :q ORDER BY a.apellido DESC")
+	public Page<Usuario> searchAssetsByParam(Pageable pageable, @Param("q") String q);
+
+	@Query("SELECT a from Usuario a WHERE a.nombre LIKE :q OR a.apellido LIKE :q OR a.dni LIKE :q OR a.rol LIKE :q ORDER BY a.apellido DESC")
+	public List<Usuario> searchAssetsByParam(@Param("q") String q);
 
 }
